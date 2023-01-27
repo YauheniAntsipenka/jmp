@@ -4,12 +4,10 @@ import jmp.cloud.bank.impl.BankImpl;
 import jmp.cloud.service.impl.ServiceImpl;
 import jmp.dto.BankCardType;
 import jmp.dto.User;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.Properties;
 
 /**
  * Main
@@ -19,10 +17,9 @@ import java.util.Properties;
  */
 public class Main {
 
-    static Logger LOGGER = Logger.getLogger(Main.class);
+    public static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        initLogger();
 
         var user1 = new User("Vasya", "Vasil'ev", LocalDate.of(1990, 11, 11));
         var user2 = new User("Petya", "Petrov", LocalDate.of(1989, 2, 3));
@@ -37,14 +34,10 @@ public class Main {
         service.addUser(user1);
         service.addUser(user2);
 
-        service.getAllUsers().forEach(user -> LOGGER.info(user));
+        service.getAllUsers().forEach(user -> LOGGER.info(user.toString()));
         service.getSubscriptionByBankCardNumber(bankCard1.getNumber())
-            .ifPresent(subscription -> LOGGER.info(subscription));
+            .ifPresent(subscription -> LOGGER.info(subscription.toString()));
         service.getSubscriptionByBankCardNumber(bankCard2.getNumber())
-            .ifPresent(subscription -> LOGGER.info(subscription));
-    }
-
-    private static void initLogger() {
-        PropertyConfigurator.configure(Main.class.getResource("/log4j.properties"));
+            .ifPresent(subscription -> LOGGER.info(subscription.toString()));
     }
 }
