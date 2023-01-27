@@ -30,7 +30,8 @@ public class ServiceImpl implements Service {
 
     @Override
     public Optional<Subscription> getSubscriptionByBankCardNumber(String number) {
-        return Optional.ofNullable(bankCardNumberToSubscriptionMap.get(number));
+        return Optional.ofNullable(Optional.ofNullable(bankCardNumberToSubscriptionMap.get(number))
+            .orElseThrow(() -> new BankCardNumberNotFoundException(number + "not found")));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package jmp.app;
 
 import jmp.cloud.bank.impl.BankImpl;
+import jmp.cloud.service.impl.BankCardNumberNotFoundException;
 import jmp.cloud.service.impl.ServiceImpl;
 import jmp.dto.BankCardType;
 import jmp.dto.User;
@@ -44,6 +45,11 @@ public class Main {
             .ifPresent(subscription -> LOGGER.info(subscription.toString()));
         service.getSubscriptionByBankCardNumber(bankCard2.getNumber())
             .ifPresent(subscription -> LOGGER.info(subscription.toString()));
+        try {
+            service.getSubscriptionByBankCardNumber("`not_found_number`");
+        } catch (BankCardNumberNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        }
 
         LOGGER.info("Average user age = {}", service.getAverageUsersAge());
         LOGGER.info("User {} years, isPayable: {}", Service.getAge(user1), Service.isPayableUser(user1));
