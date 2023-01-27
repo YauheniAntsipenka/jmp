@@ -1,11 +1,7 @@
 package jmp.cloud.bank.impl;
 
 import jmp.bank.api.Bank;
-import jmp.dto.BankCard;
-import jmp.dto.BankCardType;
-import jmp.dto.CreditBankCard;
-import jmp.dto.DebitBankCard;
-import jmp.dto.User;
+import jmp.dto.*;
 
 import java.util.Random;
 
@@ -23,10 +19,12 @@ public class BankImpl implements Bank {
         BankCard bankCard = null;
         switch (bankCardType) {
             case CREDIT:
-                bankCard = new CreditBankCard(String.valueOf(number), user);
+                ICreditBankCard creditBankCard = CreditBankCard::new;
+                bankCard = creditBankCard.createBankCard(String.valueOf(number), user);
                 break;
             case DEBIT:
-                bankCard = new DebitBankCard(String.valueOf(number), user);
+                IDebitBankCard debitBankCard = DebitBankCard::new;
+                bankCard = debitBankCard.createBankCard(String.valueOf(number), user);
                 break;
         }
         return bankCard;
