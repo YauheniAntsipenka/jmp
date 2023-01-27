@@ -4,6 +4,7 @@ import jmp.cloud.bank.impl.BankImpl;
 import jmp.cloud.service.impl.ServiceImpl;
 import jmp.dto.BankCardType;
 import jmp.dto.User;
+import jmp.service.api.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,5 +46,6 @@ public class Main {
             .ifPresent(subscription -> LOGGER.info(subscription.toString()));
 
         LOGGER.info("Average user age = {}", service.getAverageUsersAge());
+        LOGGER.info("User {} years, isPayable: {}", Service.getAge(user1), Service.isPayableUser(user1));
     }
 }

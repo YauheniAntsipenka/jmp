@@ -23,11 +23,18 @@ public interface Service {
     List<User> getAllUsers();
 
     default double getAverageUsersAge() {
-        LocalDate dateNow = LocalDate.now();
         return getAllUsers()
             .stream()
-            .mapToLong(user -> user.getBirthday().until(dateNow, ChronoUnit.YEARS))
+            .mapToLong(Service::getAge)
             .average()
             .orElse(0);
+    }
+
+    static boolean isPayableUser(User user) {
+        return getAge(user) >= 18;
+    }
+
+    static Long getAge(User user) {
+        return user.getBirthday().until(LocalDate.now(), ChronoUnit.YEARS);
     }
 }
