@@ -3,8 +3,6 @@ package jmp.cloud.bank.impl;
 import jmp.bank.api.Bank;
 import jmp.dto.*;
 
-import java.util.Random;
-
 /**
  * BankImpl
  * Date: 01/26/2023

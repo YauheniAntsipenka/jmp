@@ -5,7 +5,7 @@ import jmp.dto.BankCardType;
 import jmp.dto.User;
 
 /**
- * jmp.bank.api.Bank
+ * Bank
  * Date: 01/26/2023
  *
  * @author Yauheni Antsipenka
