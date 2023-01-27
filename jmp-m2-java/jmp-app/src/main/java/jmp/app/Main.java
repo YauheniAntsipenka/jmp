@@ -53,5 +53,9 @@ public class Main {
 
         LOGGER.info("Average user age = {}", service.getAverageUsersAge());
         LOGGER.info("User {} years, isPayable: {}", Service.getAge(user1), Service.isPayableUser(user1));
+
+        var dateNow = LocalDate.now();
+        LOGGER.info("All subscriptions is equal {}: {}", dateNow,
+            service.getAllSubscriptionsByCondition(subscription -> subscription.getStartDate().isEqual(dateNow)));
     }
 }

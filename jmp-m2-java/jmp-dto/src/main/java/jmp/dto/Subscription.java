@@ -19,6 +19,10 @@ public class Subscription {
         this.startDate = startDate;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Subscription.class.getSimpleName() + "[", "]")

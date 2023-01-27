@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * ServiceImpl
@@ -37,6 +39,11 @@ public class ServiceImpl implements Service {
     @Override
     public List<User> getAllUsers() {
         return users;
+    }
+
+    @Override
+    public List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> predicate) {
+        return bankCardNumberToSubscriptionMap.values().stream().filter(predicate).collect(Collectors.toList());
     }
 
     public void addUser(User user) {
