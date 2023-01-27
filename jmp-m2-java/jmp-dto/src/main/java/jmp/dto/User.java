@@ -21,6 +21,18 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
