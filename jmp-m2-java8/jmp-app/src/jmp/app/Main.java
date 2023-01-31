@@ -6,8 +6,6 @@ import jmp.cloud.service.impl.ServiceImpl;
 import jmp.dto.BankCardType;
 import jmp.dto.User;
 import jmp.service.api.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
@@ -18,8 +16,6 @@ import java.time.LocalDate;
  * @author Yauheni Antsipenka
  */
 public class Main {
-
-    public static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -40,22 +36,22 @@ public class Main {
         service.addUser(user2);
         service.addUser(user3);
 
-        service.getAllUsers().forEach(user -> LOGGER.info(user.toString()));
+        service.getAllUsers().forEach(System.out::println);
         service.getSubscriptionByBankCardNumber(bankCard1.getNumber())
-            .ifPresent(subscription -> LOGGER.info(subscription.toString()));
+            .ifPresent(System.out::println);
         service.getSubscriptionByBankCardNumber(bankCard2.getNumber())
-            .ifPresent(subscription -> LOGGER.info(subscription.toString()));
+            .ifPresent(System.out::println);
         try {
             service.getSubscriptionByBankCardNumber("`not_found_number`");
         } catch (BankCardNumberNotFoundException e) {
-            LOGGER.error(e.getMessage());
+            System.out.printf("Error %s%n", e.getMessage());
         }
 
-        LOGGER.info("Average user age = {}", service.getAverageUsersAge());
-        LOGGER.info("User {} years, isPayable: {}", Service.getAge(user1), Service.isPayableUser(user1));
+        System.out.printf("Average user age = %s%n", service.getAverageUsersAge());
+        System.out.printf("User %s years, isPayable: %s%n", Service.getAge(user1), Service.isPayableUser(user1));
 
         var dateNow = LocalDate.now();
-        LOGGER.info("All subscriptions is equal {}: {}", dateNow,
+        System.out.printf("All subscriptions is equal %s: %s%n", dateNow,
             service.getAllSubscriptionsByCondition(subscription -> subscription.getStartDate().isEqual(dateNow)));
     }
 }

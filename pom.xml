@@ -4,19 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.epam</groupId>
+    <groupId>com.epam.jmp</groupId>
     <artifactId>jmp</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
     <modules>
-        <module>jmp-m2-java</module>
+        <module>jmp-m2-java8</module>
+        <module>jmp-resources</module>
     </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jmp.resources.version>1.0</jmp.resources.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.epam.jmp</groupId>
+                <artifactId>jmp-resources</artifactId>
+                <version>${jmp.resources.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
