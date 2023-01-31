@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
  */
 public class ServiceImpl implements Service {
 
-    private List<User> users = new ArrayList<>();
-    private Map<String, Subscription> bankCardNumberToSubscriptionMap = new HashMap<>();
+    private final List<User> users = new ArrayList<>();
+    private final Map<String, Subscription> bankCardNumberToSubscriptionMap = new HashMap<>();
 
     @Override
     public void subscribe(BankCard bankCard) {
