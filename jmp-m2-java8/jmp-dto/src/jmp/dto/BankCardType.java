@@ -28,10 +28,4 @@ public enum BankCardType {
     public BankCardGenerator getBankCardGenerator() {
         return bankCardGenerator;
     }
-
-    public static BankCard generate(BankCardType bankCardType, String number, User user) {
-        return Objects.requireNonNull(Arrays.stream(BankCardType.values())
-            .filter(bankCardType1 -> bankCardType1.getName().equals(bankCardType.getName()))
-            .findAny().orElse(null)).getBankCardGenerator().generate(number, user);
-    }
 }
