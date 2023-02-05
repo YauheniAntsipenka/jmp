@@ -31,8 +31,8 @@ public class Main {
         int[] arr2 = Arrays.copyOf(Initializer.arr, Initializer.arr.length);
         LOGGER.info(Arrays.toString(arr2));
         startTime = System.nanoTime();
-        ForkJoinTask<int[]> factorial = forkJoinPool.submit(new QuickSortRecursiveTask(arr2, 0, arr2.length - 1));
-        sortedArr = factorial.get();
+        ForkJoinTask<int[]> quickSort = forkJoinPool.submit(new QuickSortRecursiveTask(arr2, 0, arr2.length - 1));
+        sortedArr = quickSort.get();
         endTime = System.nanoTime();
         LOGGER.info(Arrays.toString(sortedArr));
         LOGGER.info("Time to execute: {}", endTime - startTime);
