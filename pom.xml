@@ -12,7 +12,7 @@
     <modules>
         <module>jmp-resources</module>
         <module>jmp-m2-java8</module>
-        <module>jmp-m6-multithreading</module>
+        <module>jmp-m2-multithreading</module>
     </modules>
 
     <properties>
