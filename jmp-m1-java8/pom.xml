@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jmp-m2-java8</artifactId>
+    <artifactId>jmp-m1-java8</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>jmp.m2.java</name>
+    <name>jmp.m1.java</name>
 
     <parent>
         <groupId>com.epam.jmp</groupId>

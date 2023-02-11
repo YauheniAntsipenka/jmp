@@ -10,8 +10,7 @@
     <version>1.0</version>
 
     <modules>
-        <module>jmp-resources</module>
-        <module>jmp-m2-java8</module>
+        <module>jmp-m1-java8</module>
         <module>jmp-m2-multithreading</module>
     </modules>
 
