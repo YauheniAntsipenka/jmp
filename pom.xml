@@ -12,7 +12,6 @@
     <modules>
         <module>jmp-m1-java8</module>
         <module>jmp-resources</module>
-        <module>jmp-m3-sql</module>
     </modules>
 
     <properties>
