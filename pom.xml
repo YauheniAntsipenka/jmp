@@ -13,6 +13,7 @@
         <module>jmp-m1-java8</module>
         <module>jmp-resources</module>
         <module>jmp-m3-sql</module>
+        <module>jmp-m4-nosql</module>
     </modules>
 
     <properties>
@@ -21,6 +22,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jmp.resources.version>1.0</jmp.resources.version>
         <slf4j.version>2.0.6</slf4j.version>
+        <spring.boot.starter.version>2.6.3</spring.boot.starter.version>
+        <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -39,6 +42,36 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-couchbase</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
