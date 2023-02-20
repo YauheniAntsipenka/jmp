@@ -43,15 +43,13 @@ public class UserController {
         String userId = userService.addUser(newUser);
         if (userId == null) {
             return ResponseEntity.badRequest().build();
-        } else {
-            return new ResponseEntity<>("User with " + userId + " id was created", HttpStatus.CREATED);
         }
+        return new ResponseEntity<>("User with " + userId + " id was created", HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{userId}/sport")
     public ResponseEntity<String> addSportToUser(@PathVariable String userId, @RequestBody Sport sport) {
-        String s = userService.addSportToUser(userId, sport);
-        return new ResponseEntity<>(s, HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.addSportToUser(userId, sport), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/sport/{sportName}")
