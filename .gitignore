@@ -11,6 +11,7 @@ distributions
 *.MF
 out
 **/target/
+**/logs/
 
 # IntelliJ project files
 *.iml

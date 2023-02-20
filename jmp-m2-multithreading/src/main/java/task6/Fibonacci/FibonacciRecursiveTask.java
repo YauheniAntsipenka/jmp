@@ -25,14 +25,13 @@ public class FibonacciRecursiveTask extends RecursiveTask<BigInteger> {
     protected BigInteger compute() {
         if (number.compareTo(BigInteger.ONE) <= 0) {
             return number;
-        } else {
-            FibonacciRecursiveTask fibonacciRecursiveTask1 =
-                new FibonacciRecursiveTask(number.subtract(BigInteger.TWO));
-            fibonacciRecursiveTask1.fork();
-            FibonacciRecursiveTask fibonacciRecursiveTask2 =
-                new FibonacciRecursiveTask(number.subtract(BigInteger.ONE));
-            fibonacciRecursiveTask2.fork();
-            return fibonacciRecursiveTask1.join().add(fibonacciRecursiveTask2.join());
         }
+        FibonacciRecursiveTask fibonacciRecursiveTask1 =
+            new FibonacciRecursiveTask(number.subtract(BigInteger.TWO));
+        fibonacciRecursiveTask1.fork();
+        FibonacciRecursiveTask fibonacciRecursiveTask2 =
+            new FibonacciRecursiveTask(number.subtract(BigInteger.ONE));
+        fibonacciRecursiveTask2.fork();
+        return fibonacciRecursiveTask1.join().add(fibonacciRecursiveTask2.join());
     }
 }

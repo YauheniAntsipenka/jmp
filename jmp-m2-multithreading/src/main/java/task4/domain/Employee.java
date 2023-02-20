@@ -1,7 +1,5 @@
 package task4.domain;
 
-import java.util.StringJoiner;
-
 /**
  * Employee
  * Date: 02/05/2023
@@ -33,10 +31,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Employee.class.getSimpleName() + "[", "]")
-            .add("id=" + id)
-            .add("salary=" + salary)
-            .add("name='" + name + "'")
-            .toString();
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("id=").append(id);
+        sb.append(", salary=").append(salary);
+        sb.append(", name='").append(name).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

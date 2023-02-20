@@ -16,7 +16,7 @@ import java.util.concurrent.ForkJoinPool;
 public class FibonacciTest {
 
     @Test
-    public void test() {
+    public void testCalculateFibonacciAsynchronously() {
         assertEquals(1134903170L, new ForkJoinPool().invoke(new FibonacciRecursiveTask(45)).longValue());
     }
 }

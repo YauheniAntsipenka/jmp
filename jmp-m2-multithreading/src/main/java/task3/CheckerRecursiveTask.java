@@ -2,6 +2,7 @@ package task3;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import task3.domain.CheckerEnum;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class CheckerRecursiveTask extends RecursiveTask<Map<CheckerEnum, Integer>> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckerRecursiveTask.class);
+
     private final Map<CheckerEnum, Integer> map;
     public String path;
 
@@ -54,7 +56,7 @@ public class CheckerRecursiveTask extends RecursiveTask<Map<CheckerEnum, Integer
             try {
                 return Files.size(Paths.get(file.getAbsolutePath()));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new JMPModule2Task3Exception(e);
             }
         }).collect(Collectors.summarizingLong(Long::longValue));
     }
@@ -69,5 +71,11 @@ public class CheckerRecursiveTask extends RecursiveTask<Map<CheckerEnum, Integer
         return Arrays.stream(Objects.requireNonNull(currentDir.listFiles()))
             .filter(File::isDirectory)
             .collect(Collectors.toList());
+    }
+}
+
+class JMPModule2Task3Exception extends RuntimeException {
+    public JMPModule2Task3Exception(Exception e) {
+        super(e);
     }
 }

@@ -21,10 +21,9 @@ public class FactorialRecursiveTask extends RecursiveTask<BigInteger> {
     protected BigInteger compute() {
         if (number.compareTo(BigInteger.ONE) <= 0) {
             return BigInteger.ONE;
-        } else {
-            FactorialRecursiveTask factorialSub1 = new FactorialRecursiveTask(number.subtract(BigInteger.ONE));
-            factorialSub1.fork();
-            return number.multiply(factorialSub1.join());
         }
+        FactorialRecursiveTask factorialSub1 = new FactorialRecursiveTask(number.subtract(BigInteger.ONE));
+        factorialSub1.fork();
+        return number.multiply(factorialSub1.join());
     }
 }

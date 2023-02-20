@@ -1,6 +1,7 @@
 package task4;
 
 import task4.domain.Employee;
+import task4.services.impl.InitServiceImpl;
 
 import java.util.List;
 import java.util.Objects;
@@ -13,11 +14,11 @@ import java.util.Objects;
  */
 public class FakeRest {
 
-    public static List<Employee> hiredEmployees() {
-        return Initializer.EMPLOYEES;
+    public List<Employee> hiredEmployees() {
+        return new InitServiceImpl().retrieveEmployees();
     }
 
-    public static Integer getSalary(List<Employee> employees, Integer hiredEmployeeId) {
+    public Integer getSalary(List<Employee> employees, Integer hiredEmployeeId) {
         return employees.stream()
             .filter(employee -> Objects.equals(employee.getId(), hiredEmployeeId))
             .findFirst().map(Employee::getSalary)

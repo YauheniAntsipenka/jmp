@@ -1,5 +1,9 @@
 package task5.semaphores;
 
+import task5.domain.Message;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -11,11 +15,11 @@ import java.util.concurrent.Semaphore;
 public class Main {
 
     public static void main(String[] args) {
-        DataQueue dataQueue = new DataQueue();
-        Semaphore semProducer = new Semaphore(1); //if permit > 0 => thread can use resource
+        Queue<Message> dataQueue = new LinkedList<>();
+        Semaphore semProducer = new Semaphore(1);
         Semaphore semConsumer = new Semaphore(0);
 
-        new Thread(new Producer(semProducer, semConsumer, dataQueue)).start();
-        new Thread(new Consumer(semConsumer, semProducer, dataQueue)).start();
+        new Thread(new JMPSemaphoreProducer(semProducer, semConsumer, dataQueue)).start();
+        new Thread(new JMPSemaphoreConsumer(semConsumer, semProducer, dataQueue)).start();
     }
 }

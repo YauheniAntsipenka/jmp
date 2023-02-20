@@ -6,7 +6,10 @@ package task2;
  *
  * @author Yauheni Antsipenka
  */
-public class QuickSortDefault {
+public final class QuickSortDefault {
+
+    private QuickSortDefault() {
+    }
 
     public static int[] quickSort(int[] arr, int begin, int end) {
         if (begin < end) {
