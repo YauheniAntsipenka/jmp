@@ -28,7 +28,7 @@ public class JMPBQConsumer implements Runnable {
     public void run() {
         IntStream.range(0, 20).forEach(value -> {
             try {
-                LOGGER.info(String.valueOf(dataQueue.take()));
+                LOGGER.info("message: {}", dataQueue.take());
             } catch (InterruptedException e) {
                 throw new JMPModule2Task5Exception(e);
             }

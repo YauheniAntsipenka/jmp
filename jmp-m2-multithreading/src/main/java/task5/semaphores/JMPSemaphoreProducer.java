@@ -37,7 +37,7 @@ public class JMPSemaphoreProducer implements Runnable {
                 Message message = new Message(new Random().nextInt(), Thread.currentThread().getName());
                 semProd.acquire();
                 dataQueue.add(message);
-                LOGGER.info(String.valueOf(message));
+                LOGGER.info("message: {}", message);
                 semCon.release();
             } catch (InterruptedException e) {
                 throw new JMPModule2Task5Exception(e);

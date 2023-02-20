@@ -30,13 +30,13 @@ public final class Runner {
                     throw new JMPModule2Task4Exception(e);
                 }
             });
-        LOGGER.info(String.valueOf(result.get()));
+        LOGGER.info("result: {}", result.get());
     }
 
     private static CompletableFuture<List<Employee>> getEmployeesFuture(FakeRest fakeRest) {
         return CompletableFuture.supplyAsync(() -> {
             List<Employee> employees = fakeRest.hiredEmployees();
-            LOGGER.info(String.valueOf(employees));
+            LOGGER.info("employees: {}", employees);
             return employees;
         });
     }

@@ -34,7 +34,7 @@ public class JMPSemaphoreConsumer implements Runnable {
         IntStream.range(0, 20).forEach(value -> {
             try {
                 semCon.acquire();
-                LOGGER.info(String.valueOf(dataQueue.poll()));
+                LOGGER.info("message: {}", dataQueue.poll());
                 semProd.release();
             } catch (InterruptedException e) {
                 throw new JMPModule2Task5Exception(e);

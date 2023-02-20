@@ -31,7 +31,7 @@ public class JMPBQProducer implements Runnable {
             try {
                 Message message = new Message(new Random().nextInt(), Thread.currentThread().getName());
                 dataQueue.put(message);
-                LOGGER.info(String.valueOf(message));
+                LOGGER.info("message: {}", message);
             } catch (InterruptedException e) {
                 throw new JMPModule2Task5Exception(e);
             }
