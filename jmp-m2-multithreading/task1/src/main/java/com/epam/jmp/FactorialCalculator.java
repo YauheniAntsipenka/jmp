@@ -22,7 +22,7 @@ public final class FactorialCalculator {
 
     public static void calculate(int number) {
         long startTime = System.nanoTime();
-        BigInteger result = FactorialDefault.get(number);
+        BigInteger result = DefaultFactorialCalculator.calculate(number);
         long endTime = System.nanoTime();
         LOGGER.info("Factorial of {} is: {} Time to execute: {}", number, result, endTime - startTime);
     }

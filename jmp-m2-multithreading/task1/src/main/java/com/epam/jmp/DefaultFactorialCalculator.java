@@ -8,9 +8,9 @@ import java.math.BigInteger;
  *
  * @author Yauheni Antsipenka
  */
-public final class FactorialDefault {
+public final class DefaultFactorialCalculator {
 
-    public static BigInteger get(int number) {
+    public static BigInteger calculate(int number) {
         BigInteger fact = BigInteger.valueOf(1);
 
         for(int i = 1; i <= number; i++){

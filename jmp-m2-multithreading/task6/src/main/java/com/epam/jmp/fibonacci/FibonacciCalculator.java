@@ -21,7 +21,7 @@ public final class FibonacciCalculator {
 
     public static void calculate(int number) {
         long startTime = System.nanoTime();
-        BigInteger result = FibonacciDefault.calculate(number);
+        BigInteger result = DefaultFibonacciCalculator.calculate(number);
         long endTime = System.nanoTime();
         LOGGER.info("Fibonacci sum of {} is: {}. Time to execute: {}", number, result, endTime - startTime);
     }

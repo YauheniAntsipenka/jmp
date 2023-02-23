@@ -22,9 +22,9 @@ public final class QuickSortRunner {
 
     public static void run(int[] arr) {
         LOGGER.info("Incoming array: {}", Arrays.toString(arr));
-        QuickSortDefault quickSort = new QuickSortDefault();
+        DefaultQuickSorter sorter = new DefaultQuickSorter();
         long startTime = System.nanoTime();
-        int[] sortedArr = quickSort.sort(arr, 0, arr.length - 1);
+        int[] sortedArr = sorter.sort(arr, 0, arr.length - 1);
         long endTime = System.nanoTime();
         LOGGER.info("Sorted array: {}. Time to execute: {}", Arrays.toString(sortedArr), endTime - startTime);
     }

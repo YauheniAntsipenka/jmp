@@ -9,7 +9,7 @@ import com.epam.jmp.services.impl.QuickSortUtils;
  *
  * @author Yauheni Antsipenka
  */
-public class QuickSortDefault {
+public class DefaultQuickSorter {
 
     private final SortUtils sortUtils = new QuickSortUtils();
 

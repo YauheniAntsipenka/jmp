@@ -8,7 +8,7 @@ import java.math.BigInteger;
  *
  * @author Yauheni Antsipenka
  */
-public final class FibonacciDefault {
+public final class DefaultFibonacciCalculator {
 
     public static BigInteger calculate(long n) {
         long first = 0;
