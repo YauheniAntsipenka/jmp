@@ -4,6 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jmp-m2-multithreading</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>task1</module>
+        <module>task2</module>
+        <module>task3</module>
+        <module>task4</module>
+        <module>task5</module>
+        <module>task6</module>
+        <module>task7</module>
+    </modules>
 
     <parent>
         <groupId>com.epam.jmp</groupId>

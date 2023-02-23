@@ -13,6 +13,7 @@
         <module>jmp-m1-java8</module>
         <module>jmp-m2-multithreading</module>
         <module>jmp-m3-sql</module>
+        <module>jmp-m2-multithreading/task4</module>
     </modules>
 
     <properties>
