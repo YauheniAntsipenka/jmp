@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * Runner
+ * FilesChecker
  * Date: 02/20/2023
  *
  * @author Yauheni Antsipenka

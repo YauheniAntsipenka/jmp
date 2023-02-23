@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * Runner
+ * SumOfSquaresCalculator
  * Date: 02/20/2023
  *
  * @author Yauheni Antsipenka

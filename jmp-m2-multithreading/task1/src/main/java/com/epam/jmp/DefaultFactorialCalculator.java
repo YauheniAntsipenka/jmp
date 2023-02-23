@@ -3,7 +3,7 @@ package com.epam.jmp;
 import java.math.BigInteger;
 
 /**
- * FactorialDefault
+ * DefaultFactorialCalculator
  * Date: 02/04/2023
  *
  * @author Yauheni Antsipenka

@@ -10,7 +10,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.stream.Stream;
 
 /**
- * Producer
+ * JMPBQProducer
  * Date: 02/05/2023
  *
  * @author Yauheni Antsipenka

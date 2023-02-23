@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * Runner
+ * FibonacciCalculator
  * Date: 02/20/2023
  *
  * @author Yauheni Antsipenka

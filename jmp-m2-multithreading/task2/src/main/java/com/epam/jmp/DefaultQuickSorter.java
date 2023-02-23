@@ -4,7 +4,7 @@ import com.epam.jmp.services.api.SortUtils;
 import com.epam.jmp.services.impl.QuickSortUtils;
 
 /**
- * QuickSortDefault
+ * DefaultQuickSorter
  * Date: 02/04/2023
  *
  * @author Yauheni Antsipenka

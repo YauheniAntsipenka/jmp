@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Runner
+ * Retriever
  * Date: 02/20/2023
  *
  * @author Yauheni Antsipenka

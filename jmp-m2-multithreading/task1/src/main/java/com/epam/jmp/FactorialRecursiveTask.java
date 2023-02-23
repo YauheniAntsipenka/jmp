@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * Factorial
+ * FactorialRecursiveTask
  * Date: 02/04/2023
  *
  * @author Yauheni Antsipenka

@@ -12,7 +12,7 @@ import java.util.concurrent.ForkJoinPool;
 import javax.imageio.ImageIO;
 
 /**
- * Runner
+ * ImageChanger
  * Date: 02/20/2023
  *
  * @author Yauheni Antsipenka

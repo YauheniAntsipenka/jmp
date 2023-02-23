@@ -3,7 +3,7 @@ package com.epam.jmp.fibonacci;
 import java.math.BigInteger;
 
 /**
- * FibonacciDefault
+ * DefaultFibonacciCalculator
  * Date: 02/05/2023
  *
  * @author Yauheni Antsipenka

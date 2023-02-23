@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 import java.util.stream.Stream;
 
 /**
- * Consumer
+ * JMPSemaphoreConsumer
  * Date: 02/05/2023
  *
  * @author Yauheni Antsipenka
