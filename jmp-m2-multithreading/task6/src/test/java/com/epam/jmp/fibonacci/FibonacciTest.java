@@ -2,6 +2,7 @@ package com.epam.jmp.fibonacci;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.epam.jmp.task6.fibonacci.FibonacciRecursiveTask;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ForkJoinPool;
