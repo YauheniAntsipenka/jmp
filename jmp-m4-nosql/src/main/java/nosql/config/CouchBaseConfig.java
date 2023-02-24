@@ -20,8 +20,12 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 @EnableCouchbaseRepositories(basePackages={"nosql.repository"})
 public class CouchBaseConfig {
 
-    @Autowired
     private DBProperties dbProp;
+
+    @Autowired
+    public void setDbProp(DBProperties dbProp) {
+        this.dbProp = dbProp;
+    }
 
     @Bean(destroyMethod = "disconnect")
     public Cluster getCouchbaseCluster() {

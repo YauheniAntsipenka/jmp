@@ -2,10 +2,10 @@ package nosql.service.impl;
 
 import nosql.domain.Sport;
 import nosql.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import nosql.repository.api.IUserRepository;
 import nosql.service.api.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,8 +18,12 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User findById(String id) {

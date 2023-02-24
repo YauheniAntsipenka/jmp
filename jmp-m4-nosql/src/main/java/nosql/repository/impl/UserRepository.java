@@ -20,10 +20,18 @@ import java.util.UUID;
 @Repository
 public class UserRepository implements IUserRepository {
 
-    @Autowired
     private Bucket bucket;
-    @Autowired
     private Cluster cluster;
+
+    @Autowired
+    public void setBucket(Bucket bucket) {
+        this.bucket = bucket;
+    }
+
+    @Autowired
+    public void setCluster(Cluster cluster) {
+        this.cluster = cluster;
+    }
 
     @Override
     public User findById(String id) {
