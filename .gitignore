@@ -10,7 +10,8 @@ distributions
 *.class
 *.MF
 out
-**/target/**
+**/target/
+**/logs/
 
 # IntelliJ project files
 *.iml
