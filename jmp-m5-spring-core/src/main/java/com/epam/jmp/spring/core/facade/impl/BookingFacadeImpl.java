@@ -19,19 +19,13 @@ import java.util.List;
  */
 public class BookingFacadeImpl implements BookingFacade {
 
-    private EventService eventService;
-    private TicketService ticketService;
-    private UserService userService;
+    private final EventService eventService;
+    private final TicketService ticketService;
+    private final UserService userService;
 
-    public void setEventService(EventService eventService) {
+    public BookingFacadeImpl(EventService eventService, TicketService ticketService, UserService userService) {
         this.eventService = eventService;
-    }
-
-    public void setTicketService(TicketService ticketService) {
         this.ticketService = ticketService;
-    }
-
-    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 

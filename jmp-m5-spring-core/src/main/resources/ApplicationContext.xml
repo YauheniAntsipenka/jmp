@@ -21,20 +21,10 @@
         <property name="storage" ref="ticketStorage" />
     </bean>
 
-    <bean id="eventService" class="com.epam.jmp.spring.core.service.impl.EventServiceImpl">
-        <property name="eventDao" ref="eventDao" />
-    </bean>
-    <bean id="userService" class="com.epam.jmp.spring.core.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao" />
-    </bean>
-    <bean id="ticketService" class="com.epam.jmp.spring.core.service.impl.TicketServiceImpl">
-        <property name="ticketDao" ref="ticketDao" />
-    </bean>
+    <bean id="eventService" class="com.epam.jmp.spring.core.service.impl.EventServiceImpl" autowire="byName"/>
+    <bean id="userService" class="com.epam.jmp.spring.core.service.impl.UserServiceImpl" autowire="byName"/>
+    <bean id="ticketService" class="com.epam.jmp.spring.core.service.impl.TicketServiceImpl" autowire="byName"/>
 
-    <bean id="bookingFacade" class="com.epam.jmp.spring.core.facade.impl.BookingFacadeImpl">
-        <property name="eventService" ref="eventService" />
-        <property name="userService" ref="userService" />
-        <property name="ticketService" ref="ticketService" />
-    </bean>
+    <bean id="bookingFacade" class="com.epam.jmp.spring.core.facade.impl.BookingFacadeImpl" autowire="constructor"/>
     <context:annotation-config />
 </beans>
