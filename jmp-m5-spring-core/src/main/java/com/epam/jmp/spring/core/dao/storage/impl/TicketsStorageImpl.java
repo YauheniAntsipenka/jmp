@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.dao.storage.impl;
 
-import com.epam.jmp.spring.core.dao.storage.TicketsStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.Ticket;
 import com.epam.jmp.spring.core.model.impl.TicketImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-public class TicketsStorageImpl implements TicketsStorage {
+public class TicketsStorageImpl implements Storage<Ticket> {
 
     private static final String PATH = "init/tickets.json";
 

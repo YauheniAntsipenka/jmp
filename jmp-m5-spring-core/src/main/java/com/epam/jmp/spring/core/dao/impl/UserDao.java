@@ -1,7 +1,7 @@
 package com.epam.jmp.spring.core.dao.impl;
 
 import com.epam.jmp.spring.core.dao.Dao;
-import com.epam.jmp.spring.core.dao.storage.UsersStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class UserDao implements Dao<User> {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDao.class);
 
     private final Map<Long, User> usersMap = new HashMap<>();
-    private UsersStorage storage;
+    private Storage<User> storage;
 
     @Override
     public Optional<User> get(long id) {
@@ -74,7 +74,7 @@ public class UserDao implements Dao<User> {
         return usersMap;
     }
 
-    public void setStorage(UsersStorage storage) {
+    public void setStorage(Storage<User> storage) {
         this.storage = storage;
     }
 

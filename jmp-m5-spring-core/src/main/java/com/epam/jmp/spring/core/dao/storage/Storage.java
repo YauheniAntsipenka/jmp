@@ -1,7 +1,5 @@
 package com.epam.jmp.spring.core.dao.storage;
 
-import com.epam.jmp.spring.core.model.Event;
-
 import java.util.Map;
 
 /**
@@ -10,6 +8,6 @@ import java.util.Map;
  *
  * @author Yauheni Antsipenka
  */
-public interface EventsStorage {
-    Map<Long, Event> retrieveInitDataFromFile();
+public interface Storage<T> {
+    Map<Long, T> retrieveInitDataFromFile();
 }

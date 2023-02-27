@@ -1,7 +1,7 @@
 package com.epam.jmp.spring.core.dao.impl;
 
 import com.epam.jmp.spring.core.dao.Dao;
-import com.epam.jmp.spring.core.dao.storage.TicketsStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.Ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class TicketDao implements Dao<Ticket> {
     private static final Logger LOGGER = LoggerFactory.getLogger(TicketDao.class);
 
     private final Map<Long, Ticket> ticketsMap = new HashMap<>();
-    private TicketsStorage storage;
+    private Storage<Ticket> storage;
 
     @Override
     public Optional<Ticket> get(long id) {
@@ -76,7 +76,7 @@ public class TicketDao implements Dao<Ticket> {
         return ticketsMap;
     }
 
-    public void setStorage(TicketsStorage storage) {
+    public void setStorage(Storage<Ticket> storage) {
         this.storage = storage;
     }
 

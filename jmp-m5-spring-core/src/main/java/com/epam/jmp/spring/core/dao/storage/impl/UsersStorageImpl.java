@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.dao.storage.impl;
 
-import com.epam.jmp.spring.core.dao.storage.UsersStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.User;
 import com.epam.jmp.spring.core.model.impl.UserImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-public class UsersStorageImpl implements UsersStorage {
+public class UsersStorageImpl implements Storage<User> {
 
     private static final String PATH = "init/users.json";
 

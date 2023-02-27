@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.dao.storage.impl;
 
-import com.epam.jmp.spring.core.dao.storage.EventsStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.Event;
 import com.epam.jmp.spring.core.model.impl.EventImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +19,7 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-public class EventsStorageImpl implements EventsStorage {
+public class EventsStorageImpl implements Storage<Event> {
 
     private static final String PATH = "init/events.json";
 

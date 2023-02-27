@@ -1,7 +1,7 @@
 package com.epam.jmp.spring.core.dao.impl;
 
 import com.epam.jmp.spring.core.dao.Dao;
-import com.epam.jmp.spring.core.dao.storage.EventsStorage;
+import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.model.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class EventDao implements Dao<Event> {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDao.class);
 
     private Map<Long, Event> eventsMap = new HashMap<>();
-    private EventsStorage storage;
+    private Storage<Event> storage;
 
     @Override
     public Optional<Event> get(long id) {
@@ -74,7 +74,7 @@ public class EventDao implements Dao<Event> {
         return eventsMap;
     }
 
-    public void setStorage(EventsStorage storage) {
+    public void setStorage(Storage<Event> storage) {
         this.storage = storage;
     }
 
