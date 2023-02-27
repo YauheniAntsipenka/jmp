@@ -25,6 +25,10 @@ public class TicketServiceImpl implements TicketService {
         this.ticketDao = ticketDao;
     }
 
+    public TicketServiceImpl(TicketDao ticketDao) {
+        this.ticketDao = ticketDao;
+    }
+
     @Override
     public Ticket bookTicket(long userId, long eventId, int place, Ticket.Category category) {
         Ticket ticketWithLastId = ticketDao.getAll().stream().max(Comparator.comparingLong(Ticket::getId)).orElse(null);

@@ -41,6 +41,7 @@ public class TicketDao implements Dao<Ticket> {
             return null;
         }
         ticketsMap.put(ticket.getId(), ticket);
+        LOGGER.info("Ticket with id {} was created", ticket.getId());
         return ticket;
     }
 
@@ -69,6 +70,10 @@ public class TicketDao implements Dao<Ticket> {
         ticketsMap.remove(ticketId);
         LOGGER.info("Ticket with id {} was removed", ticketId);
         return true;
+    }
+
+    public Map<Long, Ticket> getTicketsMap() {
+        return ticketsMap;
     }
 
     public void setStorage(TicketsStorage storage) {

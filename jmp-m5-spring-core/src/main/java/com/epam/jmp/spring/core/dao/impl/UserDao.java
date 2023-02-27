@@ -41,6 +41,7 @@ public class UserDao implements Dao<User> {
             return null;
         }
         usersMap.put(user.getId(), user);
+        LOGGER.info("User with id {} was created", user.getId());
         return user;
     }
 
@@ -67,6 +68,10 @@ public class UserDao implements Dao<User> {
         usersMap.remove(userId);
         LOGGER.info("User with id {} was removed", userId);
         return true;
+    }
+
+    public Map<Long, User> getUsersMap() {
+        return usersMap;
     }
 
     public void setStorage(UsersStorage storage) {

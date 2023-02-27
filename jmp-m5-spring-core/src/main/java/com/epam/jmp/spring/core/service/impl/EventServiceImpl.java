@@ -6,7 +6,6 @@ import com.epam.jmp.spring.core.service.EventService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +22,10 @@ public class EventServiceImpl implements EventService {
         this.eventDao = eventDao;
     }
 
+    public EventServiceImpl(EventDao eventDao) {
+        this.eventDao = eventDao;
+    }
+
     @Override
     public Event getEventById(long eventId) {
         return eventDao.get(eventId).orElse(null);
@@ -31,14 +34,14 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
         return eventDao.getAll().stream()
-            .filter(event -> Objects.equals(event.getTitle(), title))
+            .filter(event -> event.getTitle().equals(title))
             .collect(Collectors.toList());
     }
 
     @Override
     public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
         return eventDao.getAll().stream()
-            .filter(event -> event.getDate() == day)
+            .filter(event -> event.getDate().equals(day))
             .collect(Collectors.toList());
     }
 

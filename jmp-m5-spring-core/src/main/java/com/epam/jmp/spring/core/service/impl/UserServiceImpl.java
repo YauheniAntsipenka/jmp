@@ -22,6 +22,10 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Override
     public User getUserById(long userId) {
         return userDao.get(userId).orElse(null);

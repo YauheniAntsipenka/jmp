@@ -21,7 +21,7 @@ public class EventDao implements Dao<Event> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDao.class);
 
-    private final Map<Long, Event> eventsMap = new HashMap<>();
+    private Map<Long, Event> eventsMap = new HashMap<>();
     private EventsStorage storage;
 
     @Override
@@ -41,6 +41,7 @@ public class EventDao implements Dao<Event> {
             return null;
         }
         eventsMap.put(event.getId(), event);
+        LOGGER.info("Event with id {} was created", event.getId());
         return event;
     }
 
@@ -67,6 +68,10 @@ public class EventDao implements Dao<Event> {
         eventsMap.remove(eventId);
         LOGGER.info("Event with id {} was removed", eventId);
         return true;
+    }
+
+    public Map<Long, Event> getEventsMap() {
+        return eventsMap;
     }
 
     public void setStorage(EventsStorage storage) {
