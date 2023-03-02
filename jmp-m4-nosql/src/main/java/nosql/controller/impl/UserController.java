@@ -2,7 +2,9 @@ package nosql.controller.impl;
 
 import nosql.domain.Sport;
 import nosql.domain.User;
-import nosql.service.api.IUserService;
+import nosql.exception.UserCreatingException;
+import nosql.exception.UserNotFoundException;
+import nosql.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +23,10 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/users")
 public class UserController {
 
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
-    public void setUserService(IUserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -38,22 +40,27 @@ public class UserController {
         return userService.findByEmail(email);
     }
 
-    @PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addUser(@RequestBody User newUser) {
-        String userId = userService.addUser(newUser);
-        if (userId == null) {
+        try {
+            return new ResponseEntity<>("User " + userService.addUser(newUser) + " was created", HttpStatus.CREATED);
+        } catch (UserCreatingException e) {
             return ResponseEntity.badRequest().build();
         }
-        return new ResponseEntity<>("User with " + userId + " id was created", HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{userId}/sport")
     public ResponseEntity<String> addSportToUser(@PathVariable String userId, @RequestBody Sport sport) {
-        return new ResponseEntity<>(userService.addSportToUser(userId, sport), HttpStatus.CREATED);
+        try {
+            userService.addSportToUser(userId, sport);
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity<>(String.format("Sport was added to user %s", userId), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/sport/{sportName}")
-    public List<User> addSportToUser(@PathVariable String sportName) {
+    public List<User> findBySportName(@PathVariable String sportName) {
         return userService.findBySportName(sportName);
     }
 }

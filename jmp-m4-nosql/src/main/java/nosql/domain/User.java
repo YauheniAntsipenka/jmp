@@ -1,11 +1,14 @@
 package nosql.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -29,8 +32,9 @@ public class User {
     private String fullName;
 
     @Field
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate birthDate;
 
     @Field
     private GenderEnum gender;
@@ -38,7 +42,7 @@ public class User {
     @Field
     private List<Sport> sports;
 
-    public User(String email, String fullName, Date birthDate, GenderEnum gender, List<Sport> sports) {
+    public User(String email, String fullName, LocalDate birthDate, GenderEnum gender, List<Sport> sports) {
         this.email = email;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -49,7 +53,7 @@ public class User {
     public User() {
     }
 
-    public User(String email, String fullName, Date birthDate, GenderEnum gender) {
+    public User(String email, String fullName, LocalDate birthDate, GenderEnum gender) {
         this.email = email;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -72,7 +76,7 @@ public class User {
         return fullName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
@@ -92,7 +96,7 @@ public class User {
         this.fullName = fullName;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

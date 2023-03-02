@@ -1,4 +1,4 @@
-package nosql.repository.api;
+package nosql.service.api;
 
 import nosql.domain.Sport;
 import nosql.domain.User;
@@ -6,16 +6,16 @@ import nosql.domain.User;
 import java.util.List;
 
 /**
- * IUserRepository
+ * UserService
  * Date: 02/18/2023
  *
  * @author Yauheni Antsipenka
  */
-public interface IUserRepository {
+public interface UserService {
 
     User findById(String id);
+    User addUser(User user);
     List<User> findByEmail(String email);
-    String addUser(User user);
-    String addSportToUser(String userId, Sport sport);
+    void addSportToUser(String userId, Sport sport);
     List<User> findBySportName(String sportName);
 }

@@ -1,5 +1,6 @@
 package nosql.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
@@ -23,7 +24,7 @@ public class Sport {
     private String sportName;
 
     @Field
-    private String sportProficiency;
+    private SportProfiencyEnum sportProficiency;
 
     public String getId() {
         return id;
@@ -42,14 +43,14 @@ public class Sport {
     }
 
     public String getSportProficiency() {
-        return sportProficiency;
+        return sportProficiency.getProfiency();
     }
 
-    public void setSportProficiency(String sportProficiency) {
+    public void setSportProficiency(SportProfiencyEnum sportProficiency) {
         this.sportProficiency = sportProficiency;
     }
 
-    public Sport(String sportName, String sportProficiency) {
+    public Sport(String sportName, SportProfiencyEnum sportProficiency) {
         this.id = UUID.randomUUID().toString();
         this.sportName = sportName;
         this.sportProficiency = sportProficiency;
