@@ -1,0 +1,19 @@
+package core.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+/**
+ * WebConfig
+ * Date: 03/04/2023
+ *
+ * @author Yauheni Antsipenka
+ */
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages = "core")
+@ImportResource("classpath:/context/ApplicationContext.xml")
+public class WebConfig {
+}
