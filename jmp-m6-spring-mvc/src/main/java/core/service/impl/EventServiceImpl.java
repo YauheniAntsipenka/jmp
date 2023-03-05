@@ -4,7 +4,7 @@ import core.dao.impl.EventDao;
 import core.model.Event;
 import core.service.EventService;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +39,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
+    public List<Event> getEventsForDay(LocalDate day, int pageSize, int pageNum) {
         return eventDao.getAll().stream()
             .filter(event -> event.getDate().equals(day))
             .collect(Collectors.toList());

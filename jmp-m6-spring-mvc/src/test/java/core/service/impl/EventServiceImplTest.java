@@ -13,7 +13,7 @@ import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -27,8 +27,8 @@ import java.util.Objects;
 @Ignore
 public class EventServiceImplTest {
 
-    public static final Event FIRST_EVENT = new EventImpl(1, "title1", Date.valueOf("1999-01-01"));
-    public static final Event SECOND_EVENT = new EventImpl(2, "title2", Date.valueOf("1998-02-02"));
+    public static final Event FIRST_EVENT = new EventImpl(1, "title1", LocalDate.of(1999, 1, 1));
+    public static final Event SECOND_EVENT = new EventImpl(2, "title2", LocalDate.of(1998, 2, 2));
     public static final Map<Long, Event> MAP_TO_INSERT = Map.of(1L, FIRST_EVENT, 2L, SECOND_EVENT);
     public static final int NOT_FOUND_EVENT_ID = 789;
     public static final String NOT_FOUND_TITLE = "title789";
@@ -66,28 +66,28 @@ public class EventServiceImplTest {
 
     @Test
     public void testGetEventsForDay() {
-        List<Event> events = eventService.getEventsForDay(Date.valueOf("1998-02-02"), 0, 0);
+        List<Event> events = eventService.getEventsForDay(LocalDate.of(1998, 2, 2), 0, 0);
         assertEquals(1, events.size());
         assertEquals(SECOND_EVENT, eventService.getEventById(2));
     }
 
     @Test
     public void testGetEventsForDayWhenNotFound() {
-        List<Event> events = eventService.getEventsForDay(Date.valueOf("1999-02-02"), 0, 0);
+        List<Event> events = eventService.getEventsForDay(LocalDate.of(1999, 2, 2), 0, 0);
         assertEquals(0, events.size());
     }
 
     @Test
     public void testUpdate() {
         String newTitle = "title777";
-        Event event = new EventImpl(1, newTitle, Date.valueOf("1999-01-01"));
+        Event event = new EventImpl(1, newTitle, LocalDate.of(1999, 1, 1));
         eventService.updateEvent(event);
         assertEquals(newTitle, Objects.requireNonNull(eventDao.get(1).orElse(null)).getTitle());
     }
 
     @Test
     public void testUpdateWhenNotFound() {
-        Event event = new EventImpl(123, "megatitle", Date.valueOf("1999-01-01"));
+        Event event = new EventImpl(123, "megatitle", LocalDate.of(1999, 1, 1));
         assertNull(eventService.updateEvent(event));
     }
 
@@ -104,14 +104,14 @@ public class EventServiceImplTest {
 
     @Test
     public void testCreate() {
-        Event newEvent = new EventImpl(3, "title3", Date.valueOf("1993-03-03"));
+        Event newEvent = new EventImpl(3, "title3", LocalDate.of(1993, 3, 3));
         Event savedEvent = eventDao.save(newEvent);
         assertEquals(savedEvent, eventDao.get(3).orElse(null));
     }
 
     @Test
     public void testCreateWhenAlreadyExists() {
-        Event newEvent = new EventImpl(1, "title1", Date.valueOf("1999-01-01"));
+        Event newEvent = new EventImpl(1, "title1", LocalDate.of(1999, 1, 1));
         assertNull(eventDao.save(newEvent));
     }
 }

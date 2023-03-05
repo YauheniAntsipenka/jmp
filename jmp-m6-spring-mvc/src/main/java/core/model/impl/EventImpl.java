@@ -1,8 +1,12 @@
 package core.model.impl;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import core.model.Event;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -15,12 +19,14 @@ public class EventImpl implements Event {
 
     private long id;
     private String title;
-    private Date date;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate date;
 
     public EventImpl() {
     }
 
-    public EventImpl(long id, String title, Date date) {
+    public EventImpl(long id, String title, LocalDate date) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -47,12 +53,12 @@ public class EventImpl implements Event {
     }
 
     @Override
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     @Override
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

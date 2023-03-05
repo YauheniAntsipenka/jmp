@@ -4,7 +4,7 @@ import core.model.Event;
 import core.model.Ticket;
 import core.model.User;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public interface BookingFacade {
      * @param pageNum Pagination param. Number of the page to return. Starts from 1.
      * @return List of events.
      */
-    List<Event> getEventsForDay(Date day, int pageSize, int pageNum);
+    List<Event> getEventsForDay(LocalDate day, int pageSize, int pageNum);
 
     /**
      * Creates new event. Event id should be auto-generated.

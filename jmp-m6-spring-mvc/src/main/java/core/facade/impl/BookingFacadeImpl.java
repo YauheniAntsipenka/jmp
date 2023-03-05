@@ -8,7 +8,7 @@ import core.service.EventService;
 import core.service.TicketService;
 import core.service.UserService;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
+    public List<Event> getEventsForDay(LocalDate day, int pageSize, int pageNum) {
         return eventService.getEventsForDay(day, pageSize, pageNum);
     }
 

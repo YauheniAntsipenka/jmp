@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -35,7 +35,7 @@ public class BookingFacadeImplTest {
     @Test
     void testBookTickets() {
         User user = new UserImpl(1, "name1", "email1");
-        Event event = new EventImpl(1, "title1", Date.valueOf("1999-01-01"));
+        Event event = new EventImpl(1, "title1", LocalDate.of(1999, 1, 1));
         bookingFacade.createUser(user);
         bookingFacade.createEvent(event);
         bookingFacade.bookTicket(user.getId(), event.getId(), 1, Ticket.Category.PREMIUM);

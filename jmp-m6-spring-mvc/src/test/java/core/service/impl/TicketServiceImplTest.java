@@ -12,7 +12,7 @@ import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -60,7 +60,7 @@ public class TicketServiceImplTest {
     @Test
     public void testGetBookedTicketsByEvent() {
         List<Ticket> bookedTickets =
-            ticketService.getBookedTickets(new EventImpl(2, "name", Date.valueOf("2000-01-01")), 0, 0);
+            ticketService.getBookedTickets(new EventImpl(2, "name", LocalDate.of(2000, 1, 1)), 0, 0);
         assertEquals(1, bookedTickets.size());
         assertEquals(SECOND_TICKET, bookedTickets.get(0));
     }
@@ -68,7 +68,7 @@ public class TicketServiceImplTest {
     @Test
     public void testGetBookedTicketsByEventWhenNotFound() {
         List<Ticket> bookedTickets =
-            ticketService.getBookedTickets(new EventImpl(777, "name777", Date.valueOf("2000-01-01")), 0, 0);
+            ticketService.getBookedTickets(new EventImpl(777, "name777", LocalDate.of(2000, 1, 1)), 0, 0);
         assertEquals(0, bookedTickets.size());
     }
 }

@@ -9,7 +9,7 @@ import core.model.impl.EventImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 
@@ -21,8 +21,8 @@ import java.util.Map;
  */
 public class EventDaoTest {
 
-    public static final Event FIRST_EVENT = new EventImpl(1, "title1", Date.valueOf("1999-01-01"));
-    public static final Event SECOND_EVENT = new EventImpl(2, "title2", Date.valueOf("1998-02-02"));
+    public static final Event FIRST_EVENT = new EventImpl(1, "title1", LocalDate.of(1999, 1, 1));
+    public static final Event SECOND_EVENT = new EventImpl(2, "title2", LocalDate.of(1998, 2, 2));
     public static final Map<Long, Event> MAP_TO_INSERT = Map.of(1L, FIRST_EVENT, 2L, SECOND_EVENT);
     private EventDao eventDao;
 
@@ -50,7 +50,7 @@ public class EventDaoTest {
     @Test
     public void testUpdate() {
         String newTitle = "title777";
-        Event event = new EventImpl(1, newTitle, Date.valueOf("1999-01-01"));
+        Event event = new EventImpl(1, newTitle, LocalDate.of(1999, 1, 1));
         Event updatedEvent = eventDao.update(event);
         assertEquals(newTitle, updatedEvent.getTitle());
     }
@@ -62,7 +62,7 @@ public class EventDaoTest {
 
     @Test
     public void testSave() {
-        Event newEvent = new EventImpl(3, "title3", Date.valueOf("1993-03-03"));
+        Event newEvent = new EventImpl(3, "title3", LocalDate.of(1993, 3, 3));
         Event savedEvent = eventDao.save(newEvent);
         assertEquals(newEvent, savedEvent);
     }
