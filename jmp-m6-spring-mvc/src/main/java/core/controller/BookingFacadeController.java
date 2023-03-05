@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,37 +35,46 @@ public class BookingFacadeController {
     }
 
     @GetMapping(path = "/event/{eventId}")
-    public @ResponseBody ResponseEntity<Event> getEventById(@PathVariable Integer eventId) {
+    public ModelAndView getEventById(@PathVariable Integer eventId, ModelAndView modelAndView) {
         Event event = bookingFacade.getEventById(eventId);
 
-        if (event == null) {
-            return ResponseEntity.notFound().build();
+        if (event != null) {
+            modelAndView.addObject("event", event);
+            modelAndView.setViewName("event/event.html");
+        } else {
+            modelAndView.setViewName("event/notFound.html");
         }
 
-        return new ResponseEntity<>(event, HttpStatus.OK);
+        return modelAndView;
     }
 
     @GetMapping(path = "/event/title/{title}")
-    public @ResponseBody ResponseEntity<List<Event>> getEventsByTitle(@PathVariable String title) {
+    public ModelAndView getEventsByTitle(@PathVariable String title, ModelAndView modelAndView) {
         List<Event> events = bookingFacade.getEventsByTitle(title, 0, 0);
 
         if (events.size() == 0) {
-            return  ResponseEntity.notFound().build();
+            modelAndView.setViewName("event/notFound.html");
+        } else {
+            modelAndView.addObject("events", events);
+            modelAndView.setViewName("event/events.html");
         }
 
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return modelAndView;
     }
 
     @GetMapping(path = "/event/day/{day}")
-    public @ResponseBody ResponseEntity<List<Event>> getEventsForDay(
-        @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day) {
+    public ModelAndView getEventsForDay(
+        @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate day, ModelAndView modelAndView) {
         List<Event> events = bookingFacade.getEventsForDay(day, 0, 0);
 
         if (events.size() == 0) {
-            return  ResponseEntity.notFound().build();
+            modelAndView.setViewName("event/notFound.html");
+        } else {
+            modelAndView.addObject("events", events);
+            modelAndView.setViewName("event/events.html");
         }
 
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return modelAndView;
     }
 
     @PostMapping(path = "/event/create", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -103,25 +113,31 @@ public class BookingFacadeController {
     }
 
     @GetMapping(path = "/user/{userId}")
-    public @ResponseBody ResponseEntity<User> getUserById(@PathVariable Integer userId) {
+    public ModelAndView getUserById(@PathVariable Integer userId, ModelAndView modelAndView) {
         User user = bookingFacade.getUserById(userId);
 
-        if (user == null) {
-            return ResponseEntity.notFound().build();
+        if (user != null) {
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("user/user.html");
+        } else {
+            modelAndView.setViewName("user/notFound.html");
         }
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return modelAndView;
     }
 
     @GetMapping(path = "/user/email/{email}")
-    public @ResponseBody ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    public ModelAndView getUserByEmail(@PathVariable String email, ModelAndView modelAndView) {
         User user = bookingFacade.getUserByEmail(email);
 
-        if (user == null) {
-            return ResponseEntity.notFound().build();
+        if (user != null) {
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("user/user.html");
+        } else {
+            modelAndView.setViewName("user/notFound.html");
         }
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return modelAndView;
     }
 
     @PostMapping(path = "/user/create", consumes = MediaType.APPLICATION_JSON_VALUE,
