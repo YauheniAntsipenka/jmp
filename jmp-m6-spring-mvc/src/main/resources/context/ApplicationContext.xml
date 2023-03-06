@@ -26,5 +26,7 @@
     <bean id="ticketService" class="core.service.impl.TicketServiceImpl" autowire="byName"/>
 
     <bean id="bookingFacade" class="core.facade.impl.BookingFacadeImpl" autowire="constructor"/>
+
+    <bean id="exceptionResolver" class="core.resolver.HandlerExceptionResolver"/>
     <context:annotation-config />
 </beans>

@@ -235,4 +235,9 @@ public class BookingFacadeController {
         }
     }
 
+    @GetMapping(path = "/npe")
+    public void npe() {
+        throw new NullPointerException();
+    }
+
 }
