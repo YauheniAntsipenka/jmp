@@ -3,6 +3,7 @@ package core.model.impl;
 import core.model.Ticket;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * TicketImpl
@@ -23,6 +24,14 @@ public class TicketImpl implements Ticket {
 
     public TicketImpl(long id, long eventId, long userId, Category category, int place) {
         this.id = id;
+        this.eventId = eventId;
+        this.userId = userId;
+        this.category = category;
+        this.place = place;
+    }
+
+    public TicketImpl(long eventId, long userId, Category category, int place) {
+        this.id = new Random().nextLong();
         this.eventId = eventId;
         this.userId = userId;
         this.category = category;

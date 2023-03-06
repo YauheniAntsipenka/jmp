@@ -1,5 +1,6 @@
 package core.facade.impl;
 
+import core.exception.TicketParseException;
 import core.facade.BookingFacade;
 import core.model.Event;
 import core.model.Ticket;
@@ -7,9 +8,14 @@ import core.model.User;
 import core.service.EventService;
 import core.service.TicketService;
 import core.service.UserService;
+import core.util.XmlReaderUtil;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * BookingFacadeImpl
@@ -107,5 +113,15 @@ public class BookingFacadeImpl implements BookingFacade {
     @Override
     public boolean cancelTicket(long ticketId) {
         return ticketService.cancelTicket(ticketId);
+    }
+
+    @Override
+    public void preloadTickets() {
+        try {
+            XmlReaderUtil.getTickets().forEach(ticket ->
+                ticketService.bookTicket(ticket.getUserId(), ticket.getEventId(), ticket.getPlace(), ticket.getCategory()));
+        } catch (URISyntaxException | ParserConfigurationException | IOException | SAXException e) {
+            throw new TicketParseException(e);
+        }
     }
 }

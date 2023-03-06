@@ -1,11 +1,14 @@
 package core.controller;
 
+import core.exception.TicketParseException;
 import core.facade.BookingFacade;
 import core.model.Event;
 import core.model.Ticket;
 import core.model.User;
 import core.model.impl.EventImpl;
 import core.model.impl.UserImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/booking")
 public class BookingFacadeController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BookingFacadeController.class);
 
     private BookingFacade bookingFacade;
 
@@ -218,6 +223,16 @@ public class BookingFacadeController {
         }
 
         return ResponseEntity.ok().body(String.format("Ticket with id %s was canceled", ticketId));
+    }
+
+    @GetMapping(path = "/ticket/preload")
+    public void preloadTickets() {
+        try {
+            bookingFacade.preloadTickets();
+            LOGGER.info("Tickets from xml file were successfully added to storage");
+        } catch (TicketParseException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
 }
