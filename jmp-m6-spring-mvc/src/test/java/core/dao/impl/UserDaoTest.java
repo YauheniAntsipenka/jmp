@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import core.model.User;
 import core.model.impl.UserImpl;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-@Ignore
 public class UserDaoTest {
 
     public static final User FIRST_USER = new UserImpl(1, "name1", "email1");

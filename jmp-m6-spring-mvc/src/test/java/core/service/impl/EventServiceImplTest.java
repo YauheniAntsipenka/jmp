@@ -9,7 +9,6 @@ import core.dao.impl.EventDao;
 import core.model.Event;
 import core.model.impl.EventImpl;
 import core.service.EventService;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,6 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-@Ignore
 public class EventServiceImplTest {
 
     public static final Event FIRST_EVENT = new EventImpl(1, "title1", LocalDate.of(1999, 1, 1));

@@ -9,7 +9,6 @@ import core.dao.impl.UserDao;
 import core.model.User;
 import core.model.impl.UserImpl;
 import core.service.UserService;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,6 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
-@Ignore
 public class UserServiceImplTest {
 
     public static final User FIRST_USER = new UserImpl(1, "name1", "email1");

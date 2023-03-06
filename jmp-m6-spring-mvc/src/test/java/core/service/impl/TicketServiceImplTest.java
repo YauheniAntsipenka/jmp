@@ -8,7 +8,6 @@ import core.model.impl.EventImpl;
 import core.model.impl.TicketImpl;
 import core.model.impl.UserImpl;
 import core.service.TicketService;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +21,7 @@ import java.util.Map;
  *
  * @author Yauheni Antsipenka
  */
-@Ignore
 public class TicketServiceImplTest {
-
 
     public static final Ticket FIRST_TICKET = new TicketImpl(1, 1, 1, Ticket.Category.PREMIUM, 1);
     public static final Ticket SECOND_TICKET = new TicketImpl(2, 2, 2, Ticket.Category.BAR, 2);

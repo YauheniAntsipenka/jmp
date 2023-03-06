@@ -8,7 +8,6 @@ import core.model.Ticket;
 import core.model.User;
 import core.model.impl.EventImpl;
 import core.model.impl.UserImpl;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ import java.util.List;
  *
  * @author Yauheni Antsipenka
  */
-@Ignore
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = { "classpath:/context/ApplicationContext.xml" })
 public class BookingFacadeImplTest {
