@@ -32,7 +32,6 @@ public class GeneratePdfUtil {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
-
             PdfPTable table = new PdfPTable(NUM_COLUMNS);
             table.setWidthPercentage(60);
             addHeader("Id", table);
