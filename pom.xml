@@ -14,6 +14,7 @@
         <module>jmp-m2-multithreading</module>
         <module>jmp-m3-sql</module>
         <module>jmp-m4-nosql</module>
+        <module>jmp-m7-spring-boot</module>
     </modules>
 
     <properties>
