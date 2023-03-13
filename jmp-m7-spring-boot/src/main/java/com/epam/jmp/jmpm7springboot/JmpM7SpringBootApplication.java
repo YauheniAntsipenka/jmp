@@ -1,5 +1,7 @@
 package com.epam.jmp.jmpm7springboot;
 
+import com.epam.jmp.jmpm7springboot.domain.Person;
+import com.epam.jmp.jmpm7springboot.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,7 +19,14 @@ public class JmpM7SpringBootApplication {
 	}
 
 	@Bean
-	public CommandLineRunner CommandLineRunnerBean() {
-		return (args) -> LOGGER.info("Hello, World!");
+	public CommandLineRunner CommandLineRunnerBean(PersonRepository repository) {
+		return (args) -> {
+			repository.saveAll(PersonInitializer.init());
+			LOGGER.info(String.valueOf(repository.findAll()));
+			Person person = repository.findById(1);
+			person.setFirstName("newName");
+			repository.save(person);
+			LOGGER.info(String.valueOf(repository.findAll()));
+		};
 	}
 }
