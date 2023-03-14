@@ -7,6 +7,7 @@ import com.epam.jmp.jmpm7springboot.domain.RegistrationRequest;
 import com.epam.jmp.jmpm7springboot.domain.User;
 import com.epam.jmp.jmpm7springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/auth")
-    public JwtResponse auth(@RequestBody JwtRequest request) {
+    public ResponseEntity<JwtResponse> auth(@RequestBody JwtRequest request) {
         User user = userService.findByLogin(request.getUsername());
+        if (user == null) {
+            return ResponseEntity.badRequest().build();
+        }
         String token = jwtProvider.generateToken(user.getLogin());
-        return new JwtResponse(token);
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 }
