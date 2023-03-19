@@ -56,18 +56,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-smile</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.astefanutti.metrics.aspectj</groupId>
             <artifactId>metrics-aspectj-deps</artifactId>
         </dependency>
@@ -80,9 +68,12 @@
             <artifactId>servo-atlas</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.19</version>
+            <groupId>com.netflix.servo</groupId>
+            <artifactId>servo-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -40,6 +40,7 @@
         <micrometer.version>1.8.0</micrometer.version>
         <metrics-aspectj.version>1.1.0</metrics-aspectj.version>
         <spectator-api.version>1.0.11</spectator-api.version>
+        <zuul.version>2.2.0.RELEASE</zuul.version>
     </properties>
 
     <dependencyManagement>
@@ -235,6 +236,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+                <version>${zuul.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
