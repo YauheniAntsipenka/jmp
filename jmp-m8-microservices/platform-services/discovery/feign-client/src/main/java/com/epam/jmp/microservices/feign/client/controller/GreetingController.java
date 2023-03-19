@@ -1,4 +1,4 @@
-package com.epam.jmp.feign.client.controller;
+package com.epam.jmp.microservices.feign.client.controller;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;

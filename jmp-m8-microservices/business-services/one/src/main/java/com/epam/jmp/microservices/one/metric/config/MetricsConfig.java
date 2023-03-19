@@ -2,9 +2,9 @@ package com.epam.jmp.microservices.one.metric.config;
 
 import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * MicrometerConfig
@@ -13,11 +13,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @author Yauheni Antsipenka
  */
 @Configuration
-@EnableAspectJAutoProxy
-public class MicrometerConfig {
-
+public class MetricsConfig {
     @Bean
     public TimedAspect timedAspect(MeterRegistry registry) {
         return new TimedAspect(registry);
+    }
+
+    @Bean
+    public MeterRegistry getMeterRegistry() {
+        return new CompositeMeterRegistry();
     }
 }

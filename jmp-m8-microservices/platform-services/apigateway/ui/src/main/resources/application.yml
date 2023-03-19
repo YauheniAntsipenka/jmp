@@ -1,7 +1,7 @@
 server:
-  port: 8082
+  port: 8085
 zuul:
   routes:
     foos:
       path: /foos/**
-      url: http://localhost:8081/foos
+      url: http://localhost:8084/foos
