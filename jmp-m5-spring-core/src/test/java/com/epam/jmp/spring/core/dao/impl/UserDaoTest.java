@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.epam.jmp.spring.core.model.User;
-import com.epam.jmp.spring.core.model.impl.UserImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +19,14 @@ import java.util.Objects;
  */
 public class UserDaoTest {
 
-    public static final User FIRST_USER = new UserImpl(1, "name1", "email1");
-    public static final User SECOND_USER = new UserImpl(2, "name2", "email2");
+    public static final User FIRST_USER = new User(1, "name1", "email1");
+    public static final User SECOND_USER = new User(2, "name2", "email2");
     public static final Map<Long, User> MAP_TO_INSERT = Map.of(1L, FIRST_USER, 2L, SECOND_USER);
-    private UserDao userDao;
+    private UserDaoImpl userDao;
 
     @BeforeEach
     public void setUp() {
-        userDao = new UserDao();
+        userDao = new UserDaoImpl();
         userDao.getUsersMap().putAll(MAP_TO_INSERT);
     }
 
@@ -48,7 +47,7 @@ public class UserDaoTest {
     @Test
     public void testUpdate() {
         String newName = "name777";
-        User user = new UserImpl(2, newName, "email1");
+        User user = new User(2, newName, "email1");
         userDao.update(user);
         assertEquals(newName, Objects.requireNonNull(userDao.get(2).orElse(null)).getName());
     }
@@ -61,7 +60,7 @@ public class UserDaoTest {
 
     @Test
     public void testSave() {
-        User newUser = new UserImpl(3, "name3", "email3");
+        User newUser = new User(3, "name3", "email3");
         userDao.save(newUser);
         assertEquals(newUser, userDao.get(3).orElse(null));
     }

@@ -1,7 +1,10 @@
 package com.epam.jmp.spring.core.dao.impl;
 
-import com.epam.jmp.spring.core.dao.Dao;
+import com.epam.jmp.spring.core.dao.CRUDDao;
 import com.epam.jmp.spring.core.dao.storage.Storage;
+import com.epam.jmp.spring.core.exception.JMPDeleteException;
+import com.epam.jmp.spring.core.exception.JMPSaveException;
+import com.epam.jmp.spring.core.exception.JMPUpdateException;
 import com.epam.jmp.spring.core.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +20,9 @@ import java.util.Optional;
  *
  * @author Yauheni Antsipenka
  */
-public class UserDao implements Dao<User> {
+public class UserDaoImpl implements CRUDDao<User> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     private final Map<Long, User> usersMap = new HashMap<>();
     private Storage<User> storage;
@@ -38,8 +41,9 @@ public class UserDao implements Dao<User> {
     public User save(User user) {
         if (usersMap.keySet().stream().anyMatch(id -> id == user.getId())) {
             LOGGER.info("User with id {} exists in map", user.getId());
-            return null;
+            throw new JMPSaveException();
         }
+
         usersMap.put(user.getId(), user);
         LOGGER.info("User with id {} was created", user.getId());
         return user;
@@ -49,8 +53,9 @@ public class UserDao implements Dao<User> {
     public User update(User user) {
         if (usersMap.keySet().stream().noneMatch(id -> id == user.getId())) {
             LOGGER.info("User with id {} not exists in map", user.getId());
-            return null;
+            throw new JMPUpdateException();
         }
+
         User userToUpdate = usersMap.get(user.getId());
         userToUpdate.setEmail(user.getEmail());
         userToUpdate.setName(user.getName());
@@ -63,8 +68,9 @@ public class UserDao implements Dao<User> {
     public boolean delete(long userId) {
         if (usersMap.keySet().stream().noneMatch(id -> id == userId)) {
             LOGGER.info("User with id {} not exists in map", userId);
-            return false;
+            throw new JMPDeleteException();
         }
+
         usersMap.remove(userId);
         LOGGER.info("User with id {} was removed", userId);
         return true;

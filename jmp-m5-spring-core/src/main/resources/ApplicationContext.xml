@@ -11,13 +11,13 @@
     <bean id="userStorage" class="com.epam.jmp.spring.core.dao.storage.impl.UsersStorageImpl"/>
     <bean id="ticketStorage" class="com.epam.jmp.spring.core.dao.storage.impl.TicketsStorageImpl"/>
 
-    <bean id="eventDao" class="com.epam.jmp.spring.core.dao.impl.EventDao" init-method="init">
+    <bean id="eventDao" class="com.epam.jmp.spring.core.dao.impl.EventDaoImpl" init-method="init">
         <property name="storage" ref="eventsStorage" />
     </bean>
-    <bean id="userDao" class="com.epam.jmp.spring.core.dao.impl.UserDao" init-method="init">
+    <bean id="userDao" class="com.epam.jmp.spring.core.dao.impl.UserDaoImpl" init-method="init">
         <property name="storage" ref="userStorage" />
     </bean>
-    <bean id="ticketDao" class="com.epam.jmp.spring.core.dao.impl.TicketDao" init-method="init">
+    <bean id="ticketDao" class="com.epam.jmp.spring.core.dao.impl.TicketDaoImpl" init-method="init">
         <property name="storage" ref="ticketStorage" />
     </bean>
 

@@ -1,10 +1,10 @@
 package com.epam.jmp.spring.core.service.impl;
 
-import com.epam.jmp.spring.core.dao.impl.EventDao;
+import com.epam.jmp.spring.core.dao.impl.EventDaoImpl;
 import com.epam.jmp.spring.core.model.Event;
 import com.epam.jmp.spring.core.service.EventService;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,30 +16,30 @@ import java.util.stream.Collectors;
  */
 public class EventServiceImpl implements EventService {
 
-    private EventDao eventDao;
+    private EventDaoImpl eventDao;
 
-    public void setEventDao(EventDao eventDao) {
+    public void setEventDao(EventDaoImpl eventDao) {
         this.eventDao = eventDao;
     }
 
-    public EventServiceImpl(EventDao eventDao) {
+    public EventServiceImpl(EventDaoImpl eventDao) {
         this.eventDao = eventDao;
     }
 
     @Override
-    public Event getEventById(long eventId) {
+    public Event findEventById(long eventId) {
         return eventDao.get(eventId).orElse(null);
     }
 
     @Override
-    public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
+    public List<Event> findEventsByTitle(String title, int pageSize, int pageNum) {
         return eventDao.getAll().stream()
             .filter(event -> event.getTitle().equals(title))
             .collect(Collectors.toList());
     }
 
     @Override
-    public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
+    public List<Event> findEventsForDay(LocalDate day, int pageSize, int pageNum) {
         return eventDao.getAll().stream()
             .filter(event -> event.getDate().equals(day))
             .collect(Collectors.toList());

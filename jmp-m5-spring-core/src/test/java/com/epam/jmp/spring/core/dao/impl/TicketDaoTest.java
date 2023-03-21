@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.epam.jmp.spring.core.model.Category;
 import com.epam.jmp.spring.core.model.Ticket;
-import com.epam.jmp.spring.core.model.impl.TicketImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +20,14 @@ import java.util.Objects;
  */
 public class TicketDaoTest {
 
-    public static final Ticket FIRST_TICKET = new TicketImpl(1, 1, 1, Ticket.Category.PREMIUM, 1);
-    public static final Ticket SECOND_TICKET = new TicketImpl(2, 2, 2, Ticket.Category.BAR, 2);
+    public static final Ticket FIRST_TICKET = new Ticket(1, 1, 1, Category.PREMIUM, 1);
+    public static final Ticket SECOND_TICKET = new Ticket(2, 2, 2, Category.BAR, 2);
     public static final Map<Long, Ticket> MAP_TO_INSERT = Map.of(1L, FIRST_TICKET, 2L, SECOND_TICKET);
-    private TicketDao ticketDao;
+    private TicketDaoImpl ticketDao;
 
     @BeforeEach
     public void setUp() {
-        ticketDao = new TicketDao();
+        ticketDao = new TicketDaoImpl();
         ticketDao.getTicketsMap().putAll(MAP_TO_INSERT);
     }
 
@@ -47,7 +47,7 @@ public class TicketDaoTest {
 
     @Test
     public void testUpdate() {
-        Ticket ticket = new TicketImpl(1, 2, 1, Ticket.Category.PREMIUM, 1);
+        Ticket ticket = new Ticket(1, 2, 1, Category.PREMIUM, 1);
         ticketDao.update(ticket);
         assertEquals(2, Objects.requireNonNull(ticketDao.get(1).orElse(null)).getEventId());
     }
@@ -60,7 +60,7 @@ public class TicketDaoTest {
 
     @Test
     public void testSave() {
-        Ticket newTicket = new TicketImpl(3, 3, 3, Ticket.Category.STANDARD, 3);
+        Ticket newTicket = new Ticket(3, 3, 3, Category.STANDARD, 3);
         ticketDao.save(newTicket);
         assertEquals(newTicket, ticketDao.get(3).orElse(null));
     }

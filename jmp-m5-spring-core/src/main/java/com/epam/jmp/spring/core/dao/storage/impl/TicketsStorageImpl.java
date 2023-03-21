@@ -1,9 +1,10 @@
 package com.epam.jmp.spring.core.dao.storage.impl;
 
 import com.epam.jmp.spring.core.dao.storage.Storage;
+import com.epam.jmp.spring.core.exception.RetrieveDataException;
 import com.epam.jmp.spring.core.model.Ticket;
-import com.epam.jmp.spring.core.model.impl.TicketImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +29,11 @@ public class TicketsStorageImpl implements Storage<Ticket> {
         Map<Long, Ticket> ticketsMap = new HashMap<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), TicketImpl[].class))
+            objectMapper.registerModule(new JavaTimeModule());
+            Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), Ticket[].class))
                 .forEach(ticket -> ticketsMap.put(ticket.getId(), ticket));
         } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RetrieveDataException(e);
         }
         return ticketsMap;
     }

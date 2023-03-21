@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.epam.jmp.spring.core.model.Event;
-import com.epam.jmp.spring.core.model.impl.EventImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 
@@ -21,14 +20,14 @@ import java.util.Objects;
  */
 public class EventDaoTest {
 
-    public static final Event FIRST_EVENT = new EventImpl(1, "title1", Date.valueOf("1999-01-01"));
-    public static final Event SECOND_EVENT = new EventImpl(2, "title2", Date.valueOf("1998-02-02"));
+    public static final Event FIRST_EVENT = new Event(1, "title1", LocalDate.of(1999, 1, 1));
+    public static final Event SECOND_EVENT = new Event(2, "title2", LocalDate.of(1998, 2, 2));
     public static final Map<Long, Event> MAP_TO_INSERT = Map.of(1L, FIRST_EVENT, 2L, SECOND_EVENT);
-    private EventDao eventDao;
+    private EventDaoImpl eventDao;
 
     @BeforeEach
     public void setUp() {
-        eventDao = new EventDao();
+        eventDao = new EventDaoImpl();
         eventDao.getEventsMap().putAll(MAP_TO_INSERT);
     }
 
@@ -49,7 +48,7 @@ public class EventDaoTest {
     @Test
     public void testUpdate() {
         String newTitle = "title777";
-        Event event = new EventImpl(1, newTitle, Date.valueOf("1999-01-01"));
+        Event event = new Event(1, newTitle, LocalDate.of(1999, 1, 1));
         eventDao.update(event);
         assertEquals(newTitle, Objects.requireNonNull(eventDao.get(1).orElse(null)).getTitle());
     }
@@ -62,7 +61,7 @@ public class EventDaoTest {
 
     @Test
     public void testSave() {
-        Event newEvent = new EventImpl(3, "title3", Date.valueOf("1993-03-03"));
+        Event newEvent = new Event(3, "title3", LocalDate.of(1993, 3, 3));
         eventDao.save(newEvent);
         assertEquals(newEvent, eventDao.get(3).orElse(null));
     }

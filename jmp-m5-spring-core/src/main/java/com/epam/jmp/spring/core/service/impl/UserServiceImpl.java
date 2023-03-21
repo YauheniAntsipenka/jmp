@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.service.impl;
 
-import com.epam.jmp.spring.core.dao.impl.UserDao;
+import com.epam.jmp.spring.core.dao.impl.UserDaoImpl;
 import com.epam.jmp.spring.core.model.User;
 import com.epam.jmp.spring.core.service.UserService;
 
@@ -16,23 +16,23 @@ import java.util.stream.Collectors;
  */
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+    private UserDaoImpl userDao;
 
-    public void setUserDao(UserDao userDao) {
+    public void setUserDao(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public User getUserById(long userId) {
+    public User findUserById(long userId) {
         return userDao.get(userId).orElse(null);
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userDao.getAll()
             .stream()
             .filter(user -> Objects.equals(user.getEmail(), email))
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsersByName(String name, int pageSize, int pageNum) {
+    public List<User> findUsersByName(String name, int pageSize, int pageNum) {
         return userDao.getAll()
             .stream()
             .filter(user -> Objects.equals(user.getName(), name))

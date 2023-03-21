@@ -2,7 +2,7 @@ package com.epam.jmp.spring.core.service;
 
 import com.epam.jmp.spring.core.model.Event;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface EventService {
 
-    Event getEventById(long eventId);
-    List<Event> getEventsByTitle(String title, int pageSize, int pageNum);
-    List<Event> getEventsForDay(Date day, int pageSize, int pageNum);
+    Event findEventById(long eventId);
+    List<Event> findEventsByTitle(String title, int pageSize, int pageNum);
+    List<Event> findEventsForDay(LocalDate day, int pageSize, int pageNum);
     Event createEvent(Event event);
     Event updateEvent(Event event);
     boolean deleteEvent(long eventId);

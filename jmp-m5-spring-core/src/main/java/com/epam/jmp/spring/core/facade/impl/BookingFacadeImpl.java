@@ -1,6 +1,7 @@
 package com.epam.jmp.spring.core.facade.impl;
 
 import com.epam.jmp.spring.core.facade.BookingFacade;
+import com.epam.jmp.spring.core.model.Category;
 import com.epam.jmp.spring.core.model.Event;
 import com.epam.jmp.spring.core.model.Ticket;
 import com.epam.jmp.spring.core.model.User;
@@ -8,7 +9,7 @@ import com.epam.jmp.spring.core.service.EventService;
 import com.epam.jmp.spring.core.service.TicketService;
 import com.epam.jmp.spring.core.service.UserService;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -31,17 +32,17 @@ public class BookingFacadeImpl implements BookingFacade {
 
     @Override
     public Event getEventById(long eventId) {
-        return eventService.getEventById(eventId);
+        return eventService.findEventById(eventId);
     }
 
     @Override
     public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
-        return eventService.getEventsByTitle(title, pageSize, pageNum);
+        return eventService.findEventsByTitle(title, pageSize, pageNum);
     }
 
     @Override
-    public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
-        return eventService.getEventsForDay(day, pageSize, pageNum);
+    public List<Event> getEventsForDay(LocalDate day, int pageSize, int pageNum) {
+        return eventService.findEventsForDay(day, pageSize, pageNum);
     }
 
     @Override
@@ -61,17 +62,17 @@ public class BookingFacadeImpl implements BookingFacade {
 
     @Override
     public User getUserById(long userId) {
-        return userService.getUserById(userId);
+        return userService.findUserById(userId);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userService.getUserByEmail(email);
+        return userService.findUserByEmail(email);
     }
 
     @Override
     public List<User> getUsersByName(String name, int pageSize, int pageNum) {
-        return userService.getUsersByName(name, pageSize, pageNum);
+        return userService.findUsersByName(name, pageSize, pageNum);
     }
 
     @Override
@@ -90,18 +91,18 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public Ticket bookTicket(long userId, long eventId, int place, Ticket.Category category) {
+    public Ticket bookTicket(long userId, long eventId, int place, Category category) {
         return ticketService.bookTicket(userId, eventId, place, category);
     }
 
     @Override
     public List<Ticket> getBookedTickets(User user, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(user, pageSize, pageNum);
+        return ticketService.findBookedTickets(user, pageSize, pageNum);
     }
 
     @Override
     public List<Ticket> getBookedTickets(Event event, int pageSize, int pageNum) {
-        return ticketService.getBookedTickets(event, pageSize, pageNum);
+        return ticketService.findBookedTickets(event, pageSize, pageNum);
     }
 
     @Override

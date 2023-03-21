@@ -1,7 +1,10 @@
 package com.epam.jmp.spring.core.dao.impl;
 
-import com.epam.jmp.spring.core.dao.Dao;
+import com.epam.jmp.spring.core.dao.CRUDDao;
 import com.epam.jmp.spring.core.dao.storage.Storage;
+import com.epam.jmp.spring.core.exception.JMPDeleteException;
+import com.epam.jmp.spring.core.exception.JMPSaveException;
+import com.epam.jmp.spring.core.exception.JMPUpdateException;
 import com.epam.jmp.spring.core.model.Ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +20,9 @@ import java.util.Optional;
  *
  * @author Yauheni Antsipenka
  */
-public class TicketDao implements Dao<Ticket> {
+public class TicketDaoImpl implements CRUDDao<Ticket> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TicketDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TicketDaoImpl.class);
 
     private final Map<Long, Ticket> ticketsMap = new HashMap<>();
     private Storage<Ticket> storage;
@@ -38,8 +41,9 @@ public class TicketDao implements Dao<Ticket> {
     public Ticket save(Ticket ticket) {
         if (ticketsMap.keySet().stream().anyMatch(id -> id == ticket.getId())) {
             LOGGER.info("Ticket with id {} exists in map", ticket.getId());
-            return null;
+            throw new JMPSaveException();
         }
+
         ticketsMap.put(ticket.getId(), ticket);
         LOGGER.info("Ticket with id {} was created", ticket.getId());
         return ticket;
@@ -49,8 +53,9 @@ public class TicketDao implements Dao<Ticket> {
     public Ticket update(Ticket ticket) {
         if (ticketsMap.keySet().stream().noneMatch(id -> id == ticket.getId())) {
             LOGGER.info("Ticket with id {} not exists in map", ticket.getId());
-            return null;
+            throw new JMPUpdateException();
         }
+
         Ticket ticketToUpdate = ticketsMap.get(ticket.getId());
         ticketToUpdate.setCategory(ticket.getCategory());
         ticketToUpdate.setEventId(ticket.getEventId());
@@ -65,8 +70,9 @@ public class TicketDao implements Dao<Ticket> {
     public boolean delete(long ticketId) {
         if (ticketsMap.keySet().stream().noneMatch(id -> id == ticketId)) {
             LOGGER.info("Ticket with id {} not exists in map", ticketId);
-            return false;
+            throw new JMPDeleteException();
         }
+
         ticketsMap.remove(ticketId);
         LOGGER.info("Ticket with id {} was removed", ticketId);
         return true;

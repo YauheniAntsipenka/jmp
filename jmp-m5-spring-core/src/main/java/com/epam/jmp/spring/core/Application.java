@@ -11,7 +11,9 @@ import org.springframework.core.io.ResourceLoader;
  */
 public class Application {
 
+    private static final String APPLICATION_CONTEXT_PATH = "/ApplicationContext.xml";
+
     public static void main(String[] args) {
-        JMPRunner.runApp(new ClassPathXmlApplicationContext(ResourceLoader.CLASSPATH_URL_PREFIX + "/ApplicationContext.xml"));
+        JMPRunner.runApp(new ClassPathXmlApplicationContext(ResourceLoader.CLASSPATH_URL_PREFIX + APPLICATION_CONTEXT_PATH));
     }
 }

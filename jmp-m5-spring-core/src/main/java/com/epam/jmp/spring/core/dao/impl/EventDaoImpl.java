@@ -1,7 +1,10 @@
 package com.epam.jmp.spring.core.dao.impl;
 
-import com.epam.jmp.spring.core.dao.Dao;
+import com.epam.jmp.spring.core.dao.CRUDDao;
 import com.epam.jmp.spring.core.dao.storage.Storage;
+import com.epam.jmp.spring.core.exception.JMPDeleteException;
+import com.epam.jmp.spring.core.exception.JMPSaveException;
+import com.epam.jmp.spring.core.exception.JMPUpdateException;
 import com.epam.jmp.spring.core.model.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +20,11 @@ import java.util.Optional;
  *
  * @author Yauheni Antsipenka
  */
-public class EventDao implements Dao<Event> {
+public class EventDaoImpl implements CRUDDao<Event> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);
 
-    private Map<Long, Event> eventsMap = new HashMap<>();
+    private final Map<Long, Event> eventsMap = new HashMap<>();
     private Storage<Event> storage;
 
     @Override
@@ -38,8 +41,9 @@ public class EventDao implements Dao<Event> {
     public Event save(Event event) {
         if (eventsMap.keySet().stream().anyMatch(id -> id == event.getId())) {
             LOGGER.info("Event with id {} exists in map", event.getId());
-            return null;
+            throw new JMPSaveException();
         }
+
         eventsMap.put(event.getId(), event);
         LOGGER.info("Event with id {} was created", event.getId());
         return event;
@@ -49,8 +53,9 @@ public class EventDao implements Dao<Event> {
     public Event update(Event event) {
         if (eventsMap.keySet().stream().noneMatch(id -> id == event.getId())) {
             LOGGER.info("Event with id {} not exists in map", event.getId());
-            return null;
+            throw new JMPUpdateException();
         }
+
         Event eventToUpdate = eventsMap.get(event.getId());
         eventToUpdate.setDate(event.getDate());
         eventToUpdate.setTitle(event.getTitle());
@@ -63,8 +68,9 @@ public class EventDao implements Dao<Event> {
     public boolean delete(long eventId) {
         if (eventsMap.keySet().stream().noneMatch(id -> id == eventId)) {
             LOGGER.info("Event with id {} not exists in map", eventId);
-            return false;
+            throw new JMPDeleteException();
         }
+
         eventsMap.remove(eventId);
         LOGGER.info("Event with id {} was removed", eventId);
         return true;

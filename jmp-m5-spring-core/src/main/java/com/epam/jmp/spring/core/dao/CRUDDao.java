@@ -4,12 +4,12 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Dao
+ * CRUDDao
  * Date: 02/26/2023
  *
  * @author Yauheni Antsipenka
  */
-public interface Dao<T> {
+public interface CRUDDao<T> {
 
     Optional<T> get(long id);
     Collection<T> getAll();

@@ -1,9 +1,10 @@
 package com.epam.jmp.spring.core.dao.storage.impl;
 
 import com.epam.jmp.spring.core.dao.storage.Storage;
+import com.epam.jmp.spring.core.exception.RetrieveDataException;
 import com.epam.jmp.spring.core.model.User;
-import com.epam.jmp.spring.core.model.impl.UserImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +29,11 @@ public class UsersStorageImpl implements Storage<User> {
         Map<Long, User> usersMap = new HashMap<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), UserImpl[].class))
+            objectMapper.registerModule(new JavaTimeModule());
+            Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), User[].class))
                 .forEach(user -> usersMap.put(user.getId(), user));
         } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RetrieveDataException(e);
         }
         return usersMap;
     }
