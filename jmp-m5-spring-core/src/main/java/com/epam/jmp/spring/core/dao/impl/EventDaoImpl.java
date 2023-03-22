@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.dao.impl;
 
-import com.epam.jmp.spring.core.dao.CRUDDao;
+import com.epam.jmp.spring.core.dao.EventDao;
 import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.exception.JMPDeleteException;
 import com.epam.jmp.spring.core.exception.JMPSaveException;
@@ -20,7 +20,7 @@ import java.util.Optional;
  *
  * @author Yauheni Antsipenka
  */
-public class EventDaoImpl implements CRUDDao<Event> {
+public class EventDaoImpl implements EventDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventDaoImpl.class);
 
@@ -41,7 +41,7 @@ public class EventDaoImpl implements CRUDDao<Event> {
     public Event save(Event event) {
         if (eventsMap.keySet().stream().anyMatch(id -> id == event.getId())) {
             LOGGER.info("Event with id {} exists in map", event.getId());
-            throw new JMPSaveException();
+            throw new JMPSaveException("Save exception");
         }
 
         eventsMap.put(event.getId(), event);
@@ -53,7 +53,7 @@ public class EventDaoImpl implements CRUDDao<Event> {
     public Event update(Event event) {
         if (eventsMap.keySet().stream().noneMatch(id -> id == event.getId())) {
             LOGGER.info("Event with id {} not exists in map", event.getId());
-            throw new JMPUpdateException();
+            throw new JMPUpdateException("Update exception");
         }
 
         Event eventToUpdate = eventsMap.get(event.getId());
@@ -68,7 +68,7 @@ public class EventDaoImpl implements CRUDDao<Event> {
     public boolean delete(long eventId) {
         if (eventsMap.keySet().stream().noneMatch(id -> id == eventId)) {
             LOGGER.info("Event with id {} not exists in map", eventId);
-            throw new JMPDeleteException();
+            throw new JMPDeleteException("Delete exception");
         }
 
         eventsMap.remove(eventId);
@@ -76,6 +76,7 @@ public class EventDaoImpl implements CRUDDao<Event> {
         return true;
     }
 
+    @Override
     public Map<Long, Event> getEventsMap() {
         return eventsMap;
     }

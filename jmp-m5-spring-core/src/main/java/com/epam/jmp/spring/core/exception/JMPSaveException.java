@@ -7,7 +7,7 @@ package com.epam.jmp.spring.core.exception;
  * @author Yauheni Antsipenka
  */
 public class JMPSaveException extends RuntimeException {
-    public JMPSaveException() {
-        super();
+    public JMPSaveException(String e) {
+        super(e);
     }
 }

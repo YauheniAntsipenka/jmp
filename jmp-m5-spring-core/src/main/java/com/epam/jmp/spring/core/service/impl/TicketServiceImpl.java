@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.service.impl;
 
-import com.epam.jmp.spring.core.dao.impl.TicketDaoImpl;
+import com.epam.jmp.spring.core.dao.TicketDao;
 import com.epam.jmp.spring.core.model.Category;
 import com.epam.jmp.spring.core.model.Event;
 import com.epam.jmp.spring.core.model.Ticket;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
  */
 public class TicketServiceImpl implements TicketService {
 
-    private TicketDaoImpl ticketDao;
+    private TicketDao ticketDao;
 
-    public void setTicketDao(TicketDaoImpl ticketDao) {
+    public void setTicketDao(TicketDao ticketDao) {
         this.ticketDao = ticketDao;
     }
 
-    public TicketServiceImpl(TicketDaoImpl ticketDao) {
+    public TicketServiceImpl(TicketDao ticketDao) {
         this.ticketDao = ticketDao;
     }
 

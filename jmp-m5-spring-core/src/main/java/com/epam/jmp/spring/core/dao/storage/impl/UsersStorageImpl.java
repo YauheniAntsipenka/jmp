@@ -26,15 +26,15 @@ public class UsersStorageImpl implements Storage<User> {
 
     @Override
     public Map<Long, User> retrieveInitDataFromFile() {
-        Map<Long, User> usersMap = new HashMap<>();
         try {
+            Map<Long, User> usersMap = new HashMap<>();
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), User[].class))
                 .forEach(user -> usersMap.put(user.getId(), user));
+            return usersMap;
         } catch (IOException | URISyntaxException e) {
             throw new RetrieveDataException(e);
         }
-        return usersMap;
     }
 }

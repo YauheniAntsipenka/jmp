@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.epam.jmp.spring.core.dao.UserDao;
 import com.epam.jmp.spring.core.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class UserDaoTest {
     public static final User FIRST_USER = new User(1, "name1", "email1");
     public static final User SECOND_USER = new User(2, "name2", "email2");
     public static final Map<Long, User> MAP_TO_INSERT = Map.of(1L, FIRST_USER, 2L, SECOND_USER);
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     @BeforeEach
     public void setUp() {

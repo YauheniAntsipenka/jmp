@@ -26,15 +26,15 @@ public class TicketsStorageImpl implements Storage<Ticket> {
 
     @Override
     public Map<Long, Ticket> retrieveInitDataFromFile() {
-        Map<Long, Ticket> ticketsMap = new HashMap<>();
         try {
+            Map<Long, Ticket> ticketsMap = new HashMap<>();
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), Ticket[].class))
                 .forEach(ticket -> ticketsMap.put(ticket.getId(), ticket));
+            return ticketsMap;
         } catch (IOException | URISyntaxException e) {
             throw new RetrieveDataException(e);
         }
-        return ticketsMap;
     }
 }

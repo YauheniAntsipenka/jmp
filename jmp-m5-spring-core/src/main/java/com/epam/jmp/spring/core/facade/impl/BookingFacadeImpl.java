@@ -71,7 +71,7 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public List<User> getUsersByName(String name, int pageSize, int pageNum) {
+    public List<User> findUsersByName(String name, int pageSize, int pageNum) {
         return userService.findUsersByName(name, pageSize, pageNum);
     }
 

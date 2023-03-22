@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.service.impl;
 
-import com.epam.jmp.spring.core.dao.impl.UserDaoImpl;
+import com.epam.jmp.spring.core.dao.UserDao;
 import com.epam.jmp.spring.core.model.User;
 import com.epam.jmp.spring.core.service.UserService;
 
@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
  */
 public class UserServiceImpl implements UserService {
 
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
-    public void setUserDao(UserDaoImpl userDao) {
+    public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public UserServiceImpl(UserDaoImpl userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 

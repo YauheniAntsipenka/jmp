@@ -61,14 +61,14 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testGetUsersByName() {
+    public void testFindUsersByName() {
         List<User> users = userService.findUsersByName("name1", 0, 0);
         assertEquals(1, users.size());
         assertEquals(FIRST_USER, users.get(0));
     }
 
     @Test
-    public void testGetUsersByNameWhenNotFound() {
+    public void testFindUsersByNameWhenNotFound() {
         List<User> users = userService.findUsersByName("name789", 0, 0);
         assertEquals(0, users.size());
     }

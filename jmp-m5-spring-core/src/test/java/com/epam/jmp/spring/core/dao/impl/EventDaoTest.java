@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.epam.jmp.spring.core.dao.EventDao;
 import com.epam.jmp.spring.core.model.Event;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class EventDaoTest {
     public static final Event FIRST_EVENT = new Event(1, "title1", LocalDate.of(1999, 1, 1));
     public static final Event SECOND_EVENT = new Event(2, "title2", LocalDate.of(1998, 2, 2));
     public static final Map<Long, Event> MAP_TO_INSERT = Map.of(1L, FIRST_EVENT, 2L, SECOND_EVENT);
-    private EventDaoImpl eventDao;
+    private EventDao eventDao;
 
     @BeforeEach
     public void setUp() {

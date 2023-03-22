@@ -7,7 +7,7 @@ package com.epam.jmp.spring.core.exception;
  * @author Yauheni Antsipenka
  */
 public class JMPUpdateException extends RuntimeException {
-    public JMPUpdateException() {
-        super();
+    public JMPUpdateException(String e) {
+        super(e);
     }
 }

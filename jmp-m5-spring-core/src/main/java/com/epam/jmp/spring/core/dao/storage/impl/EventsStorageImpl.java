@@ -26,15 +26,15 @@ public class EventsStorageImpl implements Storage<Event> {
 
     @Override
     public Map<Long, Event> retrieveInitDataFromFile() {
-        Map<Long, Event> eventsMap = new HashMap<>();
         try {
+            Map<Long, Event> eventsMap = new HashMap<>();
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             Arrays.asList(objectMapper.readValue(new File(Objects.requireNonNull(getClass().getClassLoader().getResource(PATH)).toURI()), Event[].class))
                 .forEach(event -> eventsMap.put(event.getId(), event));
+            return eventsMap;
         } catch (IOException | URISyntaxException e) {
             throw new RetrieveDataException(e);
         }
-        return eventsMap;
     }
 }

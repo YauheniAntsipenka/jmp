@@ -7,7 +7,7 @@ package com.epam.jmp.spring.core.exception;
  * @author Yauheni Antsipenka
  */
 public class JMPDeleteException extends RuntimeException {
-    public JMPDeleteException() {
-        super();
+    public JMPDeleteException(String e) {
+        super(e);
     }
 }

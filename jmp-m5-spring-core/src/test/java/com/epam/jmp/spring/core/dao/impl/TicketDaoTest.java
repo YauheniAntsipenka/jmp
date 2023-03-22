@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.epam.jmp.spring.core.dao.TicketDao;
 import com.epam.jmp.spring.core.model.Category;
 import com.epam.jmp.spring.core.model.Ticket;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ public class TicketDaoTest {
     public static final Ticket FIRST_TICKET = new Ticket(1, 1, 1, Category.PREMIUM, 1);
     public static final Ticket SECOND_TICKET = new Ticket(2, 2, 2, Category.BAR, 2);
     public static final Map<Long, Ticket> MAP_TO_INSERT = Map.of(1L, FIRST_TICKET, 2L, SECOND_TICKET);
-    private TicketDaoImpl ticketDao;
+    private TicketDao ticketDao;
 
     @BeforeEach
     public void setUp() {

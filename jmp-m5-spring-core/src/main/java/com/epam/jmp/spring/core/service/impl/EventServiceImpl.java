@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.service.impl;
 
-import com.epam.jmp.spring.core.dao.impl.EventDaoImpl;
+import com.epam.jmp.spring.core.dao.EventDao;
 import com.epam.jmp.spring.core.model.Event;
 import com.epam.jmp.spring.core.service.EventService;
 
@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
  */
 public class EventServiceImpl implements EventService {
 
-    private EventDaoImpl eventDao;
+    private EventDao eventDao;
 
-    public void setEventDao(EventDaoImpl eventDao) {
+    public void setEventDao(EventDao eventDao) {
         this.eventDao = eventDao;
     }
 
-    public EventServiceImpl(EventDaoImpl eventDao) {
+    public EventServiceImpl(EventDao eventDao) {
         this.eventDao = eventDao;
     }
 

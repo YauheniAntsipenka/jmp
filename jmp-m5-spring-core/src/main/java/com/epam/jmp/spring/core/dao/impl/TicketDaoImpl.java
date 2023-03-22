@@ -1,6 +1,6 @@
 package com.epam.jmp.spring.core.dao.impl;
 
-import com.epam.jmp.spring.core.dao.CRUDDao;
+import com.epam.jmp.spring.core.dao.TicketDao;
 import com.epam.jmp.spring.core.dao.storage.Storage;
 import com.epam.jmp.spring.core.exception.JMPDeleteException;
 import com.epam.jmp.spring.core.exception.JMPSaveException;
@@ -20,7 +20,7 @@ import java.util.Optional;
  *
  * @author Yauheni Antsipenka
  */
-public class TicketDaoImpl implements CRUDDao<Ticket> {
+public class TicketDaoImpl implements TicketDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TicketDaoImpl.class);
 
@@ -41,7 +41,7 @@ public class TicketDaoImpl implements CRUDDao<Ticket> {
     public Ticket save(Ticket ticket) {
         if (ticketsMap.keySet().stream().anyMatch(id -> id == ticket.getId())) {
             LOGGER.info("Ticket with id {} exists in map", ticket.getId());
-            throw new JMPSaveException();
+            throw new JMPSaveException("Save exception");
         }
 
         ticketsMap.put(ticket.getId(), ticket);
@@ -53,7 +53,7 @@ public class TicketDaoImpl implements CRUDDao<Ticket> {
     public Ticket update(Ticket ticket) {
         if (ticketsMap.keySet().stream().noneMatch(id -> id == ticket.getId())) {
             LOGGER.info("Ticket with id {} not exists in map", ticket.getId());
-            throw new JMPUpdateException();
+            throw new JMPUpdateException("Update exception");
         }
 
         Ticket ticketToUpdate = ticketsMap.get(ticket.getId());
@@ -70,7 +70,7 @@ public class TicketDaoImpl implements CRUDDao<Ticket> {
     public boolean delete(long ticketId) {
         if (ticketsMap.keySet().stream().noneMatch(id -> id == ticketId)) {
             LOGGER.info("Ticket with id {} not exists in map", ticketId);
-            throw new JMPDeleteException();
+            throw new JMPDeleteException("Delete exception");
         }
 
         ticketsMap.remove(ticketId);
@@ -78,6 +78,7 @@ public class TicketDaoImpl implements CRUDDao<Ticket> {
         return true;
     }
 
+    @Override
     public Map<Long, Ticket> getTicketsMap() {
         return ticketsMap;
     }
