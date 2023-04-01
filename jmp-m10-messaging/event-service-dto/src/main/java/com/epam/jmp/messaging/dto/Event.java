@@ -1,6 +1,11 @@
 package com.epam.jmp.messaging.dto;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,17 +34,19 @@ public class Event {
     @Column
     private String speaker;
     @Column
-    private LocalDateTime dateTime;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate date;
 
     public Event() {
     }
 
-    public Event(Long eventId, String title, String place, String speaker, LocalDateTime dateTime) {
+    public Event(Long eventId, String title, String place, String speaker, LocalDate date) {
         this.eventId = eventId;
         this.title = title;
         this.place = place;
         this.speaker = speaker;
-        this.dateTime = dateTime;
+        this.date = date;
     }
 
     public Long getEventId() {
@@ -74,12 +81,12 @@ public class Event {
         this.speaker = speaker;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -87,12 +94,12 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return eventId.equals(event.eventId) && Objects.equals(title, event.title) && Objects.equals(place, event.place) && Objects.equals(speaker, event.speaker) && Objects.equals(dateTime, event.dateTime);
+        return eventId.equals(event.eventId) && Objects.equals(title, event.title) && Objects.equals(place, event.place) && Objects.equals(speaker, event.speaker) && Objects.equals(date, event.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventId, title, place, speaker, dateTime);
+        return Objects.hash(eventId, title, place, speaker, date);
     }
 
     @Override
@@ -102,7 +109,7 @@ public class Event {
         sb.append(", title='").append(title).append('\'');
         sb.append(", place='").append(place).append('\'');
         sb.append(", speaker='").append(speaker).append('\'');
-        sb.append(", dateTime=").append(dateTime);
+        sb.append(", date=").append(date);
         sb.append('}');
         return sb.toString();
     }

@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEvent(Long id) {
+    public Event findEvent(Long id) {
         return eventRepository.findById(id).orElse(null);
     }
 
@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllEvents() {
+    public List<Event> findAllEvents() {
         return (List<Event>) eventRepository.findAll();
     }
 }
