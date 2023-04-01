@@ -11,6 +11,7 @@
         <module>event-service-dto</module>
         <module>event-service-impl</module>
         <module>event-service-rest</module>
+        <module>event-application</module>
     </modules>
 
     <parent>

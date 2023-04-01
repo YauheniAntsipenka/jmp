@@ -2,6 +2,12 @@ package com.epam.jmp.messaging.dto;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Event
@@ -9,12 +15,20 @@ import java.util.Objects;
  *
  * @author Yauheni Antsipenka
  */
+@Entity
+@Table(name = "events")
 public class Event {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long eventId;
+    @Column
     private String title;
+    @Column
     private String place;
+    @Column
     private String speaker;
+    @Column
     private LocalDateTime dateTime;
 
     public Event() {
