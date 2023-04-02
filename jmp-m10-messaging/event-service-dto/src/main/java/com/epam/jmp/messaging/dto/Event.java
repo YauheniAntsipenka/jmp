@@ -104,12 +104,12 @@ public class Event {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Event{");
-        sb.append("eventId=").append(eventId);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", place='").append(place).append('\'');
-        sb.append(", speaker='").append(speaker).append('\'');
-        sb.append(", date=").append(date);
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"eventId\":").append(eventId);
+        sb.append(", \"title\":\"").append(title).append('\"');
+        sb.append(", \"place\":\"").append(place).append('\"');
+        sb.append(", \"speaker\":\"").append(speaker).append('\"');
+        sb.append(", \"date\":\"").append(date).append('\"');
         sb.append('}');
         return sb.toString();
     }

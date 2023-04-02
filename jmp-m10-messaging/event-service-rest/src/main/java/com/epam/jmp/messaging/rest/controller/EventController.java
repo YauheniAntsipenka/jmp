@@ -3,12 +3,12 @@ package com.epam.jmp.messaging.rest.controller;
 import com.epam.jmp.messaging.dto.Event;
 import com.epam.jmp.messaging.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,21 +29,21 @@ public class EventController {
     private EventService eventService;
 
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        Event createdEvent = eventService.createEvent(event);
-        if (createdEvent == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public String createEvent(@RequestBody Event event) {
+        eventService.createEvent(event);
+        return String.format("Message to create new event (%s) was sent to topic", event);
     }
 
-    @PostMapping("/update/{id}")
-    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event event) {
-        Event updatedEvent = eventService.updateEvent(id, event);
-        if (updatedEvent == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @PutMapping("/update")
+    public String updateEvent(@RequestBody Event event) {
+        eventService.updateEvent(event);
+        return String.format("Message to update event (%s) was sent to topic", event);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEventById(@PathVariable Long id) {
+        eventService.deleteEvent(id);
+        return String.format("Message to delete event with id %s was sent to topic", id);
     }
 
     @GetMapping("/{id}")
@@ -53,11 +53,6 @@ public class EventController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(event);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteEventById(@PathVariable Long id) {
-        eventService.deleteEvent(id);
     }
 
     @GetMapping

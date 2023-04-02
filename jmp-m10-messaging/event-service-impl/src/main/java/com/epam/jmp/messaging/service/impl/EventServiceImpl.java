@@ -1,5 +1,6 @@
 package com.epam.jmp.messaging.service.impl;
 
+import com.epam.jmp.messaging.EventMessaging;
 import com.epam.jmp.messaging.dto.Event;
 import com.epam.jmp.messaging.repository.EventRepository;
 import com.epam.jmp.messaging.service.EventService;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * EventServiceImpl
@@ -20,29 +20,29 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired(required = false)
+    private EventMessaging eventMessaging;
 
     @Override
     public Event createEvent(Event event) {
-        return eventRepository.save(event);
+        eventMessaging.createEvent(event);
+        return event;
     }
 
     @Override
-    public Event updateEvent(Long id, Event event) {
-        Optional<Event> currentEvent = eventRepository.findById(id);
-        if (currentEvent.isPresent()) {
-            return eventRepository.save(event);
-        }
-        return null;
+    public Event updateEvent(Event event) {
+        eventMessaging.updateEvent(event);
+        return event;
+    }
+
+    @Override
+    public void deleteEvent(Long id) {
+        eventMessaging.deleteEvent(id);
     }
 
     @Override
     public Event findEvent(Long id) {
         return eventRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void deleteEvent(Long id) {
-        eventRepository.deleteById(id);
     }
 
     @Override

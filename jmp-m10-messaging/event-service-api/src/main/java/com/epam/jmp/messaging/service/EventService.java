@@ -13,7 +13,7 @@ import java.util.List;
 public interface EventService {
 
     Event createEvent(Event event);
-    Event updateEvent(Long id, Event event);
+    Event updateEvent(Event event);
     Event findEvent(Long id);
     void deleteEvent(Long id);
     List<Event> findAllEvents();

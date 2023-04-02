@@ -12,6 +12,7 @@
         <module>event-service-impl</module>
         <module>event-service-rest</module>
         <module>event-application</module>
+        <module>event-messaging</module>
     </modules>
 
     <parent>
