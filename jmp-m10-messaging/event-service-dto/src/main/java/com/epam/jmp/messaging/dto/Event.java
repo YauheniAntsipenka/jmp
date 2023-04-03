@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -22,7 +23,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "events")
-public class Event {
+public class Event implements Serializable {
+
+    private static final long serialVersionUID = 7526472295622776147L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

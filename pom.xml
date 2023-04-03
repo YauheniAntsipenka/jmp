@@ -150,6 +150,11 @@
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring.boot.starter.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-activemq</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

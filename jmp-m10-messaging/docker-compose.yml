@@ -6,7 +6,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - 22181:2181
+      - "22181:2181"
 
   kafka:
     #bin/kafka-console-consumer --topic=create_notification_topic --bootstrap-server=localhost:9092
@@ -14,7 +14,7 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - 9092:9092
+      - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -30,5 +30,16 @@ services:
       RABBITMQ_DEFAULT_USER: qwe
       RABBITMQ_DEFAULT_PASS: qwe
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
+
+  activemq:
+    image: rmohr/activemq:5.10.0
+    container_name: activemq
+    environment:
+      - "TZ=Europe/Amsterdam"
+    volumes:
+      - "./activemq/activemq.xml:/conf/activemq.xml"
+    ports:
+      - "61616:61616" # broker
+      - "8161:8161"   # web
