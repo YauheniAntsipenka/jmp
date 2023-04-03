@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("rabbit")
-public class RabbitConfig {
+public class RabbitMQConfig {
 
     @Value(value = "${create.notification.topic.name}")
     private String createNotificationTopicName;
@@ -51,6 +51,9 @@ public class RabbitConfig {
     private String updateRequestRoutingKey;
     @Value(value = "${delete.request.routing.key}")
     private String deleteRequestRoutingKey;
+
+    @Value(value = "${exchange.key}")
+    private String exchangeKey;
 
     @Bean
     public ConnectionFactory connectionFactory() {
@@ -102,7 +105,7 @@ public class RabbitConfig {
 
     @Bean
     public DirectExchange exchange() {
-        return new DirectExchange("testExchange", true, false);
+        return new DirectExchange(exchangeKey, true, false);
     }
 
     @Bean

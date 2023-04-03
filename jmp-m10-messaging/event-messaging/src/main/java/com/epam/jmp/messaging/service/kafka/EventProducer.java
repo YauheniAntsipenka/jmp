@@ -33,6 +33,7 @@ public class EventProducer implements EventMessaging {
     private String updateRequestTopicName;
     @Value(value = "${delete.request.topic.name}")
     private String deleteRequestTopicName;
+
     @Autowired
     private KafkaService kafkaService;
 

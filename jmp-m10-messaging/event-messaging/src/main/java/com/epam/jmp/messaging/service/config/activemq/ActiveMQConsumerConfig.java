@@ -27,7 +27,7 @@ public class ActiveMQConsumerConfig {
         ActiveMQConnectionFactory activeMQConnectionFactory  = new ActiveMQConnectionFactory();
         activeMQConnectionFactory.setBrokerURL(brokerUrl);
         activeMQConnectionFactory.setTrustAllPackages(true);
-        return  activeMQConnectionFactory;
+        return activeMQConnectionFactory;
     }
 
     @Bean

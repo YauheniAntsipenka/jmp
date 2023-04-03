@@ -20,7 +20,7 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eventRepository;
-    @Autowired(required = false)
+    @Autowired
     private EventMessaging eventMessaging;
 
     @Override

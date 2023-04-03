@@ -42,6 +42,7 @@ public class EventConsumer {
     public void updateEventListener(Event event) {
         LOGGER.info("Update event: {}", event);
         Optional<Event> currentEvent = eventRepository.findById(event.getEventId());
+
         if (currentEvent.isPresent()) {
             eventRepository.save(event);
         }
