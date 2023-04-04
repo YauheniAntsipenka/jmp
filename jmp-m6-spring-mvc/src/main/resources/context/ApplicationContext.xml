@@ -7,26 +7,26 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <bean id="eventsStorage" class="core.dao.storage.impl.EventsStorageImpl"/>
-    <bean id="userStorage" class="core.dao.storage.impl.UsersStorageImpl"/>
-    <bean id="ticketStorage" class="core.dao.storage.impl.TicketsStorageImpl"/>
+    <bean id="eventsStorage" class="com.epam.jmp.spring.mvc.dao.storage.impl.EventsStorageImpl"/>
+    <bean id="userStorage" class="com.epam.jmp.spring.mvc.dao.storage.impl.UsersStorageImpl"/>
+    <bean id="ticketStorage" class="com.epam.jmp.spring.mvc.dao.storage.impl.TicketsStorageImpl"/>
 
-    <bean id="eventDao" class="core.dao.impl.EventDao" init-method="init">
+    <bean id="eventDao" class="com.epam.jmp.spring.mvc.dao.impl.EventDao" init-method="init">
         <property name="storage" ref="eventsStorage" />
     </bean>
-    <bean id="userDao" class="core.dao.impl.UserDao" init-method="init">
+    <bean id="userDao" class="com.epam.jmp.spring.mvc.dao.impl.UserDao" init-method="init">
         <property name="storage" ref="userStorage" />
     </bean>
-    <bean id="ticketDao" class="core.dao.impl.TicketDao" init-method="init">
+    <bean id="ticketDao" class="com.epam.jmp.spring.mvc.dao.impl.TicketDao" init-method="init">
         <property name="storage" ref="ticketStorage" />
     </bean>
 
-    <bean id="eventService" class="core.service.impl.EventServiceImpl" autowire="byName"/>
-    <bean id="userService" class="core.service.impl.UserServiceImpl" autowire="byName"/>
-    <bean id="ticketService" class="core.service.impl.TicketServiceImpl" autowire="byName"/>
+    <bean id="eventService" class="com.epam.jmp.spring.mvc.service.impl.EventServiceImpl" autowire="byName"/>
+    <bean id="userService" class="com.epam.jmp.spring.mvc.service.impl.UserServiceImpl" autowire="byName"/>
+    <bean id="ticketService" class="com.epam.jmp.spring.mvc.service.impl.TicketServiceImpl" autowire="byName"/>
 
-    <bean id="bookingFacade" class="core.facade.impl.BookingFacadeImpl" autowire="constructor"/>
+    <bean id="bookingFacade" class="com.epam.jmp.spring.mvc.facade.impl.BookingFacadeImpl" autowire="constructor"/>
 
-    <bean id="exceptionResolver" class="core.resolver.HandlerExceptionResolver"/>
+    <bean id="exceptionResolver" class="com.epam.jmp.spring.mvc.resolver.HandlerExceptionResolver"/>
     <context:annotation-config />
 </beans>

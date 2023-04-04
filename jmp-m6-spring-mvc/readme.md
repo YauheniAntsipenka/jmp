@@ -35,11 +35,3 @@ Add a method public void preloadTickets() to facade that will load this file fro
      7. Unit tests, logging, javadocs. (0.5 point)
 
      8. Implement integration tests for Booking service controllers using the MockMVC framework. (0.5 point)
-
-Extramile:
-
-
-2 points
-
-Update your application using spring boot instead of the current implementation.
-Modify the method implemented in point 5. Make facade method accept some input stream, MVC controller for this method should handle multipart file upload and pass the file byte stream to the facade method.
