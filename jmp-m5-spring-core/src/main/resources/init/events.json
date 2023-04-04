@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "firstTitle",
+    "date": "1990-12-12"
+  },
+  {
+    "id": 2,
+    "title": "secondTitle",
+    "date": "1991-11-11"
+  },
+  {
+    "id": 3,
+    "title": "thirdTitle",
+    "date": "1992-10-10"
+  }
+]
