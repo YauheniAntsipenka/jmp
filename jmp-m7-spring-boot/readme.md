@@ -23,28 +23,12 @@ Implement authentication and authorization mechanism
 OAuth2 should be used
 JWT Token should be used
 
-Task 4 (Optional) - CRUD application: externalized configuration
-
-Cost: 1 points.
-
-Should support different environments - local, dev, stg, prod
-Spring profiles
-Each environment - different db properties
-
 Task 5 - CRUD application: data migrating
 
 Cost: 1 points.
 
 Add tool for migrating data
 Flyway or Liquibase
-
-Task 6 (Optional) - CRUD application: actuator
-
-Cost: 1 points.
-
-Enable actuator
-Implement a few custom health indicators
-Implement a few custom metrics using Prometheus
 
 Task 7 - CRUD application: testing
 

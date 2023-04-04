@@ -40,9 +40,11 @@ public class AuthenticationController {
     @PostMapping("/auth")
     public ResponseEntity<JwtResponse> auth(@RequestBody JwtRequest request) {
         User user = userService.findByLogin(request.getUsername());
+
         if (user == null) {
             return ResponseEntity.badRequest().build();
         }
+
         String token = jwtProvider.generateToken(user.getLogin());
         return ResponseEntity.ok(new JwtResponse(token));
     }
