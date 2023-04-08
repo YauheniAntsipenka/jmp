@@ -15,6 +15,7 @@
         <module>jmp-m3-sql</module>
         <module>jmp-m4-nosql</module>
         <module>jmp-m5-spring-core</module>
+        <module>jmp-m11-restapi</module>
     </modules>
 
     <properties>
