@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.sun.istack.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -30,14 +31,19 @@ public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Long eventId;
     @Column
+    @NotNull
     private String title;
     @Column
+    @NotNull
     private String place;
     @Column
+    @NotNull
     private String speaker;
     @Column
+    @NotNull
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateTime;
