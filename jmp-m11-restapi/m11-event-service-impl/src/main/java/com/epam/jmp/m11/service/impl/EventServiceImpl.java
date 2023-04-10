@@ -6,9 +6,7 @@ import com.epam.jmp.m11.service.api.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * EventServiceImpl
@@ -24,9 +22,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> findAllEventsByTitle(String title) {
-        return eventRepository.findAll().stream()
-            .filter(event -> event.getTitle().equals(title))
-            .collect(Collectors.toList());
+        return eventRepository.findAllEventsByTitle(title);
     }
 
     @Override
@@ -36,21 +32,24 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event updateEvent(Event event) {
-        return eventRepository.update(event);
+        if (!eventRepository.existsById(event.getEventId())) {
+            return null;
+        }
+        return eventRepository.save(event);
     }
 
     @Override
     public Event findEvent(Long id) {
-        return null;
+        return eventRepository.findById(id).orElse(null);
     }
 
     @Override
     public void deleteEvent(Long id) {
-
+        eventRepository.deleteById(id);
     }
 
     @Override
     public List<Event> findAllEvents() {
-        return null;
+        return (List<Event>) eventRepository.findAll();
     }
 }
