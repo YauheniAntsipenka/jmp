@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+</head>
+<body>
+<body>
+<h1>Events</h1>
+  <tr th:each="event: ${events}">
+    <p th:text="${event.id}"></p>
+    <p th:text="${event.title}"></p>
+    <p th:text="${event.date}"></p>
+  </tr>
+</body>
+</body>
+</html>
