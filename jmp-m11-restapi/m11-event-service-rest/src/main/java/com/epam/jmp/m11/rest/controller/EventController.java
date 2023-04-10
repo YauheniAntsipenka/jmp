@@ -41,9 +41,11 @@ public class EventController {
     @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
         Event createdEvent = eventService.createEvent(event);
+
         if (createdEvent == null) {
             return ResponseEntity.badRequest().build();
         }
+
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -55,9 +57,11 @@ public class EventController {
     @PutMapping
     public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
         Event updatedEvent = eventService.updateEvent(event);
+
         if (updatedEvent == null) {
             return ResponseEntity.badRequest().build();
         }
+
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -69,9 +73,11 @@ public class EventController {
     @GetMapping("/{id}")
     public ResponseEntity<Event> findEventById(@PathVariable Long id) {
         Event event = eventService.findEvent(id);
+
         if (event == null) {
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(event);
     }
 

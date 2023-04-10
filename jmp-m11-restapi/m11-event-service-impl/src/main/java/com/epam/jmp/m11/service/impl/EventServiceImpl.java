@@ -35,6 +35,7 @@ public class EventServiceImpl implements EventService {
         if (!eventRepository.existsById(event.getEventId())) {
             return null;
         }
+
         return eventRepository.save(event);
     }
 
