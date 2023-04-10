@@ -15,6 +15,6 @@ import java.util.List;
  */
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
-    @Query("SELECT e FROM Event e WHERE u.title = 1")
+    @Query("SELECT e FROM Event e WHERE e.title = ?1")
     List<Event> findAllEventsByTitle(String title);
 }

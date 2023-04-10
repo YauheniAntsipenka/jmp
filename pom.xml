@@ -18,6 +18,7 @@
         <module>jmp-m6-spring-mvc</module>
         <module>jmp-m7-spring-boot</module>
         <module>jmp-m11-restapi</module>
+        <module>jmp-m11-restapi/m11-event-application</module>
     </modules>
 
     <properties>
