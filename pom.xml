@@ -19,6 +19,7 @@
         <module>jmp-m7-spring-boot</module>
         <module>jmp-m8-microservices</module>
         <module>jmp-m9-kafka</module>
+        <module>jmp-m10-messaging</module>
     </modules>
 
     <properties>
@@ -55,9 +56,7 @@
         <micrometer.version>1.8.0</micrometer.version>
         <metrics-aspectj.version>1.1.0</metrics-aspectj.version>
         <spectator-api.version>1.0.11</spectator-api.version>
-        <zuul.version>2.2.0.RELEASE</zuul.version>
         <kafka.version>2.8.0</kafka.version>
-        <h2.version>2.1.214</h2.version>
         <jaxb.version>2.3.1</jaxb.version>
     </properties>
 
@@ -214,17 +213,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <scope>runtime</scope>
-                <version>${h2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring.boot.starter.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>${jaxb.version}</version>
@@ -375,6 +363,21 @@
                 <artifactId>spring-boot-starter-json</artifactId>
                 <version>${spring.boot.starter.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-activemq</artifactId>
+                <version>${spring.boot.starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
