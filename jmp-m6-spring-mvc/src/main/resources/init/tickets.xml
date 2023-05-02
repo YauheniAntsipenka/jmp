@@ -1,0 +1,5 @@
+<tickets>
+    <ticket user="123" event="123" category="PREMIUM" place="123"/>
+    <ticket user="234" event="234" category="PREMIUM" place="234"/>
+    <ticket user="345" event="345" category="PREMIUM" place="345"/>
+</tickets>

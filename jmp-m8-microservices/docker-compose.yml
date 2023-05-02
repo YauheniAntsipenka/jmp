@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+  common:
+    build: business-services/common
+    networks:
+      - ms-network
+    ports:
+      - "8081:8081"
+
+  one:
+    build: business-services/one
+    networks:
+      - ms-network
+    ports:
+      - "8082:8082"
+
+  two:
+    build: business-services/two
+    networks:
+      - ms-network
+    ports:
+      - "8083:8083"
+
+  apigateway_backend:
+    build: platform-services/apigateway/backend
+    networks:
+      - ms-network
+    ports:
+      - "8084:8084"
+
+  apigateway_ui:
+    build: platform-services/apigateway/ui
+    networks:
+      - ms-network
+    ports:
+      - "8085:8085"
+
+  discovery_eureka_server:
+    build: platform-services/discovery/eureka-server
+    ports:
+      - "8761:8761"
+    container_name: eureka-server
+    hostname: eureka-server
+    networks:
+      - ms-network
+    environment:
+      server.port: 8761
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
+  discovery_eureka_client:
+    build: platform-services/discovery/eureka-client
+    ports:
+      - "8086:8086"
+    networks:
+      - ms-network
+    depends_on:
+      - discovery_eureka_server
+    environment:
+      server.port: 8086
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
+  discovery_feign_client:
+    build: platform-services/discovery/feign-client
+    ports:
+      - "8088:8088"
+    networks:
+      - ms-network
+    depends_on:
+      - discovery_eureka_server
+    environment:
+      server.port: 8088
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
+networks:
+  ms-network:
+    driver: bridge
